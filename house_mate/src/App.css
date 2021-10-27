@@ -9,23 +9,26 @@
   display:flex;
   flex-direction:row;
   flex-wrap:wrap;
-  width:100%;
+  background-color:fuchsia;
   height:100%;
 }
 
 .App{
-  margin:15px;
   background-color:coral;
+  height:92vh;
 }
 
 .LeftColumn{
   background-color: cornflowerblue;
+  height:100%;
 }
 
 .RightColumn{
   background-color:darkcyan;
+  height:100%;
 }
 
 .MidColumn{
   background-color:darkkhaki;
+  height:100%;
 }

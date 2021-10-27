@@ -1,8 +1,10 @@
 import './App.css';
+import NavBar from './NavBar';
 
 function App() {
   return (
     <div className="App">
+      <NavBar/>
       <div className="Row">
         <div className="Column">
           <div className = "LeftColumn">lefthand</div>

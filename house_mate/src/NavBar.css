@@ -2,14 +2,18 @@
     display:flex;
     background-color:rgb(93, 133, 133);
     height:8vh;
+    text-align: center;
 }
 
 .Address{
-    font-size: 200%;
-    margin:auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:-15px;
 }
 
 .Profile{
     padding: 15px;
     vertical-align: middle;
+    margin-left:0;
+    margin-right:0;
 }

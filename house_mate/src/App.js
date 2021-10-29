@@ -22,7 +22,7 @@ function App() {
             )}
             
             {leftDetails && (
-              <h1>Details</h1>
+              <h1>Name</h1> //Nathan to assist with implementation
             )
           }
           </div>
@@ -39,7 +39,7 @@ function App() {
             )}
             
             {addExpense && (
-              <h1>Expenses</h1>
+              <h1>Expenses</h1>//Nathan to assist with implementation
             )}
         </div>
         </div>
@@ -53,7 +53,7 @@ function App() {
             <h1>House Rules</h1>
           )}
           {houseRules && (
-            <h1>Payments are to be made on the 1st of each month</h1>
+            <h1>Payments are to be made on the 1st of each month</h1>//Nathan to assist with implementation
           )}
           
         </div>

@@ -1,15 +1,11 @@
 import React from 'react';
 
-import Header from "../Header";
-import UserForm from "../UserForm";
+import Header from './login-components/Header/Header.js';
+import UserForm from './login-components/UserForm/UserForm.js';
 
+// Nathan we'll probs have to add some like event tracking, it can't do anything rn but just log "success" or something lol
 
-
-class Login extends React.Component{
-
-    // Nathan we'll probs have to add some like event tracking, it can't do anything rn but just log "success" or something lol
-
-    render() {
+function Login() {
         return(
             <div className = "login-page">
                 {/* Header component*/}
@@ -21,7 +17,5 @@ class Login extends React.Component{
             </div>
         );
     }
-
-}
 
 export default Login;

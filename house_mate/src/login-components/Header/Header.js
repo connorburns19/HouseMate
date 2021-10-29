@@ -1,10 +1,9 @@
 import React from "react";
 
-import "./Header.css";
+import './login-components/Header/Header.css';
 
 /* The Header Component */
-class Header extends React.Component {
-  render() {
+function Header() {
     return (
       <div className="header">
         <h1> Housemate </h1>
@@ -12,6 +11,5 @@ class Header extends React.Component {
       </div>
     );
   }
-}
 
 export default Header;

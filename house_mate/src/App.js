@@ -22,7 +22,30 @@ function App() {
             )}
             
             {leftDetails && (
-              <h1>Name</h1> //Nathan to assist with implementation
+              <div className="Table">
+                <h1>Current Expenses</h1>
+
+                <h2>Owed to you</h2>
+                <table>
+                  <tbody>
+                    <tr><td><strong>User</strong></td> <td><strong>Owed</strong></td></tr>
+                    <tr><td>Ekagra Luthra</td> <td>$65.00</td></tr>
+                    <tr><td>Connor Burns</td> <td>$15.00</td></tr>
+                    <tr><td>Evan Kanter</td> <td>$26.50</td></tr>
+                    <tr><td>Liam Culp</td> <td>$10.60</td></tr>
+                    <tr><td>Johnson Vo</td> <td>$9.99</td></tr>
+                  </tbody>
+                </table>
+
+                <h2>You owe</h2>
+                <table>
+                  <tbody>
+                    <tr><td><strong>User</strong></td> <td><strong>Owed</strong></td></tr>
+                    <tr><td>Salvador Neri</td> <td>$75</td></tr>
+                    <tr><td>Matvey Lebedev</td> <td>$17.86</td></tr>
+                  </tbody>
+                </table>
+              </div>
             )
           }
           </div>

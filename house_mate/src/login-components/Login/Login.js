@@ -1,7 +1,7 @@
 import React from 'react';
+import Header from '../Header/Header';
+import UserForm from '../UserForm/UserForm';
 
-import Header from './login-components/Header/Header.js';
-import UserForm from './login-components/UserForm/UserForm.js';
 
 // Nathan we'll probs have to add some like event tracking, it can't do anything rn but just log "success" or something lol
 

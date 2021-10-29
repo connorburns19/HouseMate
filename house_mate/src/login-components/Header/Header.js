@@ -1,6 +1,6 @@
 import React from "react";
 
-import './login-components/Header/Header.css';
+import './Header.css';
 
 /* The Header Component */
 function Header() {

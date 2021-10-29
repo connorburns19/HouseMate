@@ -4,6 +4,7 @@ import NavBar from './NavBar';
 
 function App() {
   const [leftDetails, leftDetailsShown] = useState(false);
+  const [addExpense, addExpenseShown] = useState(false);
 
   return (
     <div className="App">
@@ -16,18 +17,30 @@ function App() {
           onMouseLeave={() => leftDetailsShown(false)}
           >
             {!leftDetails && (
-            <h1>View Expenses</h1>
+              <h1>View Expenses</h1>
             )}
             
             {leftDetails && (
-              <h1>details</h1>
+              <h1>Details</h1>
             )}
 
           </div>
           
         </div>
         <div className="Column">
-        <div className = "MidColumn"><h1>Add Expenses</h1></div>
+        <div 
+        className = "MidColumn"
+        onMouseEnter={() => addExpenseShown(true)}
+        onMouseLeave={() => addExpenseShown(false)}
+        >
+          {!addExpense && (
+              <h1>Add Expenses</h1>
+            )}
+            
+            {addExpense && (
+              <h1>Expenses</h1>
+            )}
+        </div>
         </div>
         <div className="Column">
         <div className = "RightColumn"><h1>House Rules</h1></div>

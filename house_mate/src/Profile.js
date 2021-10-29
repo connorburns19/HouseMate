@@ -1,5 +1,9 @@
 import React from 'react';
 import './Profile.css';
+import Button from '@mui/material/Button';
+
+
+
 
 
 function Profile() {
@@ -14,15 +18,16 @@ function Profile() {
         </div>
         <div class='Comment'>
             I like pizza and programming. I also like pizza and programming. I also like pizza and programming. I also like pizza and programming. I also like pizza and programming. I also like pizza and programming. I also like pizza and programming.
+                        <Button variant="contained" size ="small">change</Button>
         </div>
         </div>
         
         <div class='InfoContainer'>
         <div class ='DisplayName'> 
-            Connor Burns
+            Connor Burns <Button variant="contained" size ="small">change</Button>
             </div>
-        connor.burns@mail.utoronto.ca <br></br>
-        905-396-6805
+        connor.burns@mail.utoronto.ca <Button variant="contained" size ="small">change</Button><br></br>
+        905-396-6805 <Button variant="contained" size ="small">change</Button>
         </div>
         
         

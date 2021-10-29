@@ -29,11 +29,11 @@ function App() {
                 <table>
                   <tbody>
                     <tr><td><strong>User</strong></td> <td><strong>Owed</strong></td></tr>
-                    <tr><td>Ekagra Luthra</td> <td>$65.00</td></tr>
-                    <tr><td>Connor Burns</td> <td>$15.00</td></tr>
-                    <tr><td>Evan Kanter</td> <td>$26.50</td></tr>
-                    <tr><td>Liam Culp</td> <td>$10.60</td></tr>
-                    <tr><td>Johnson Vo</td> <td>$9.99</td></tr>
+                    <tr><td>Ekagra Luthra</td> <td>$65.00</td> <td><button>Remind</button></td></tr>
+                    <tr><td>Connor Burns</td> <td>$15.00</td> <td><button>Remind</button></td></tr>
+                    <tr><td>Evan Kanter</td> <td>$26.50</td> <td><button>Remind</button></td></tr>
+                    <tr><td>Liam Culp</td> <td>$10.60</td> <td><button>Remind</button></td></tr>
+                    <tr><td>Johnson Vo</td> <td>$9.99</td> <td><button>Remind</button></td></tr>
                   </tbody>
                 </table>
 
@@ -41,8 +41,8 @@ function App() {
                 <table>
                   <tbody>
                     <tr><td><strong>User</strong></td> <td><strong>Owed</strong></td></tr>
-                    <tr><td>Salvador Neri</td> <td>$75</td></tr>
-                    <tr><td>Matvey Lebedev</td> <td>$17.86</td></tr>
+                    <tr><td>Salvador Neri</td> <td>$75</td> <td><button>Pay</button></td></tr>
+                    <tr><td>Matvey Lebedev</td> <td>$17.86</td> <td><button>Pay</button></td></tr>
                   </tbody>
                 </table>
               </div>
@@ -62,7 +62,28 @@ function App() {
             )}
             
             {addExpense && (
-              <h1>Expenses</h1>//Nathan to assist with implementation
+              <div>
+                <h1>Create Expense</h1>
+                {/* <form>
+                <label>Enter your name:
+                <input 
+                  type="text" 
+                  name="username" 
+                  // value={inputs.username || ""} 
+                  // onChange={handleChange}
+                />
+                </label>
+                <label>Enter your age:
+                  <input 
+                    type="number" 
+                    name="age" 
+                    // value={inputs.age || ""} 
+                    // onChange={handleChange}
+                  />
+                  </label>
+                  <input type="submit" />
+                </form> */}
+              </div>
             )}
         </div>
         </div>

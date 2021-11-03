@@ -1,53 +1,30 @@
-.Column{
-  display: flex;
-  flex-direction: column;
-  flex-basis: 100%;
-  flex: 1;
-  text-align: center;
+.button--color-blue{
+  background-color:red;
 }
 
-.Row{
+.landing-page{
+  height:100vh;
+}
+
+.landing-page__flex-wrapper{
   display:flex;
-  flex-direction:row;
-  flex-wrap:wrap;
-  background-color:fuchsia;
   height:100%;
+  align-items:center;
+  justify-content:center;
 }
 
-.App{
-  background-color:coral;
-  height:92vh;
+.landing-page__button-container{
+  width:20vw;
+  height:20vw;
+  padding:10vw;
+
 }
 
-.LeftColumn{
-  background-color: cornflowerblue;
+.landing-page__button{
   height:100%;
-}
-
-.RightColumn{
-  background-color:darkcyan;
-  height:100%;
-}
-
-.MidColumn{
-  background-color:darkkhaki;
-  height:100%;
-}
-
-table {
   width: 100%;
-  /* border: 1px solid black;
-  border-collapse: collapse; */
 }
 
-th, td {
-  padding: 15px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+.landing-page--black{
+  background-color: #22223b;
 }
-
-tr:hover {
-  background-color: whitesmoke;
-  cursor: pointer;
-}
-tr:nth-child(even) {background-color: #f2f2f2;}

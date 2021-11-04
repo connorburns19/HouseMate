@@ -15,9 +15,14 @@
 
 .landing-page__button-container{
   width:20vw;
-  height:20vw;
+  height:35vh;
   padding:10vw;
 
+}
+
+.nav-bar__tool-bar{
+  background:transparent;
+  box-shadow: none;
 }
 
 .landing-page__button{
@@ -26,5 +31,5 @@
 }
 
 .landing-page--black{
-  background-color: #22223b;
+  background: #393E46;
 }

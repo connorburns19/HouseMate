@@ -20,16 +20,16 @@
 
 }
 
-.nav-bar__tool-bar{
+/* .nav-bar__tool-bar{
   background:transparent;
   box-shadow: none;
-}
+} */
 
 .landing-page__button{
   height:100%;
   width: 100%;
 }
 
-.landing-page--black{
+.landing-page--dark{
   background: #393E46;
 }

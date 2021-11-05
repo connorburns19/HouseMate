@@ -1,3 +1,19 @@
+
+
+.profile-page{
+    height: 100vh;
+}
+
+.profile-page__flex-wrapper{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
 .Image{
     float: left;
     max-width: 500px;

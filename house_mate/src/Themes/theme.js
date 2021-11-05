@@ -3,7 +3,8 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
     palette: {
       primary: {
-        main: '#FF5151',
+        // main: '#FF5151',
+        main: '#88E0EF',
       },
       secondary: {
         main: '#FF9B6A',
@@ -12,7 +13,7 @@ const theme = createTheme({
         main: '#161E54',
       },
       navbar: {
-        main: '#88E0EF',
+        main: '#FF5151',
       }
     },
   }

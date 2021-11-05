@@ -1,0 +1,15 @@
+.main-page{
+    height:100vh;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.main-page--dark{
+    background: #393E46;
+}
+
+.add-expense-wrapper{
+    padding:50px;
+    margin:10px;
+}

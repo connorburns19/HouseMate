@@ -80,7 +80,7 @@ function NavBar() {
                     </Drawer>
                 </React.Fragment>
             ))}
-                <h1 className="nav-bar__address-text address-text--white">{addresses[1]}</h1>
+                <h1 className="nav-bar__address-text" style={{color:'white'}}>{addresses[1]}</h1>
                 {/* addresses[] will be replaced with the users address in something like users.addresses */}
             </ToolBar>
         </AppBar>

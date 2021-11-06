@@ -4,6 +4,39 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "../Themes/theme.js";
 import NavBar from "../NavBar/NavBar";
 import Stack from '@mui/material/Stack';
+import HouseCard from "./housecard";
+
+const houses = [{
+  address: "15 King's College Circle",
+  imagelink: "https://www.utoronto.ca/sites/default/files/UC--by-Laura.jpg",
+  id: 0,
+  members: ["user", "luthraek", "cernasal"]
+},
+{
+  address: "40 St. George Street",
+  imagelink: "https://www.thestar.com/content/dam/thestar/news/gta/2019/09/30/safety-barriers-installed-at-bahen-centre-after-student-death-u-of-t-says/rm_suicide_01.jpg",
+  id: 1,
+  members: ["user", "degoeyna"]
+},
+{
+  address: "6 Hoskin Ave",
+  imagelink: "https://thevarsity.ca/wp-content/uploads/2017/11/COMMENT_Comment_in_Brief-SOFIA_LUDWIGTHE_VARSITY-Trinity_College.jpg",
+  id: 2,
+  members: ["user", "burnsco2", "degoeyna"]
+}]
+
+/*
+  Function for generating the houseCards of the current u
+*/
+function displayUserHouses(username) {
+  const houseCardList = []
+  for (let i=0; i < houses.length; i++) {
+    if (houses[i].members.includes(username)) {
+      houseCardList.push(<HouseCard address={houses[i].address} imagelink={houses[i].imagelink}/>)
+    }
+  }
+  return houseCardList
+}
 
 function Houses() {
   return (
@@ -13,21 +46,7 @@ function Houses() {
         <div className="house-list">
             <h2 className="house-title">Your Houses</h2>
             <Stack spacing={2}>
-                <div className="house-element">
-                    <img className="house-img" src="https://www.utoronto.ca/sites/default/files/UC--by-Laura.jpg" alt="house_picture"/>
-                    <h4>15 King's College Circle</h4>
-                    <Button className="house-page__button">Go to house</Button>
-                </div>
-                <div className="house-element">
-                    <img className="house-img" src="https://www.thestar.com/content/dam/thestar/news/gta/2019/09/30/safety-barriers-installed-at-bahen-centre-after-student-death-u-of-t-says/rm_suicide_01.jpg" alt="house_picture"/>
-                    <h4>40 St. George Street</h4>
-                    <Button className="house-page__button">Go to house</Button>
-                </div>
-                <div className="house-element">
-                    <img className="house-img" src="https://thevarsity.ca/wp-content/uploads/2017/11/COMMENT_Comment_in_Brief-SOFIA_LUDWIGTHE_VARSITY-Trinity_College.jpg" alt="house_picture"/>
-                    <h4>6 Hoskin Ave</h4>
-                    <Button className="house-page__button">Go to house</Button>
-                </div>
+              {displayUserHouses("user")}
                 <Button>Add House by house code</Button>
             </Stack>
         </div>

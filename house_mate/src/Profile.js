@@ -6,13 +6,21 @@ import theme from "./Themes/theme.js";
 import NavBar from "./NavBar";
 import { RIEToggle, RIEInput, RIETextArea, RIENumber, RIETags, RIESelect } from 'riek'
 import _ from 'lodash'
+import { Grid } from "@mui/material";
+
+
+
+
+
+
 
 function Profile() {
   return (
+    
     <div className="profile-page profile-page--dark">
       <ThemeProvider theme={theme}>
         <NavBar />
-
+        
         <div className="profile-page__flex-wrapper">
           <div class="profile-page__image-container">
               <img
@@ -27,12 +35,26 @@ function Profile() {
               and programming. I also like pizza and programming.
             </div> */}
             <div class="profile-page__infocontainer">
-            <div class="profile-page__displayname">
+            {/* <Grid container spacing={2}>
+                <Grid item xs={8}>
+                    
+                </Grid>
+                <Grid item xs={4}>
+                    
+                </Grid>
+                <Grid item xs={4}>
+                    
+                </Grid>
+                <Grid item xs={8}>
+                    
+                </Grid>
+            </Grid> */}
+            {/* <div class="profile-page__displayname">
               Connor Burns{" "}
             </div>
             connorburns191{" "}
             <br></br>
-            905-396-6805{" "} 
+            905-396-6805{" "}  */}
             <Button variant="contained">change name/number</Button>
 
           </div>

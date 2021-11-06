@@ -1,7 +1,7 @@
 
 
 .profile-page{
-    height: 100vh;
+    height: 100%;
 }
 
 .profile-page__flex-wrapper{
@@ -15,8 +15,8 @@
 
 
 .profile-page__image{
-    float: left;
-    max-width: 27vw;
+    
+    max-width: 100%;
     border-radius: 10%;
     
     
@@ -26,10 +26,13 @@
 
 
 .profile-page__image-container{
-    width: 30vw;
+    
+    width: 15vw;
     height: 100vh;
-    margin-left: 50px;
+    /* margin-left: 50px; */
     margin-top: 10px;
+    align-items: center;
+    justify-content: center;
 
 }
 .profile-page__displayname{
@@ -39,18 +42,18 @@
     
 }
 .profile-page__infocontainer{
-    margin-top: 10vh;
+    margin-top: 10px;
     overflow-y: hidden;
     
-    width: 25vw;
-    height: 30vh;
+    width: 100%;
+    height: 25vh;
     
     font-family: monospace;
     font-size: 200%;
     
     background-color: rgb(93, 133, 133);
     border-radius: 10px;
-    padding: 10px;
+    
 }
 .profile-page__comment{
     margin-top: 10px;

@@ -2,7 +2,7 @@ import NavBar from "../NavBar/NavBar.js";
 import theme from "../Themes/theme.js";
 import { ThemeProvider } from "@mui/material/styles";
 import './ViewExpense.css'
-import { Table, TableCell, TableHead, TableRow } from "@mui/material";
+import { Table, TableCell, TableHead, TableRow , TableBody} from "@mui/material";
 
 function addExpense(name, amount){
     return { name, amount };
@@ -28,6 +28,18 @@ function ViewExpense(){
                                 <TableCell align="center">Amount Owed</TableCell>
                             </TableRow>
                         </TableHead>
+                        <TableBody>
+                            {rows.map((row) => (
+                                <TableRow key={ row.name } onClick={() => {console.log(row.name)}}>
+                                    <TableCell align="center">
+                                        { row.name }
+                                    </TableCell>
+                                    <TableCell align="center">
+                                        { row.amount }
+                                    </TableCell>
+                              </TableRow>
+                            ))}
+                        </TableBody>
                     </Table>
                 </div>
             </ThemeProvider>

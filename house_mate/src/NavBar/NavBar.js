@@ -5,6 +5,7 @@ import AppBar from '@mui/material/AppBar';
 import ToolBar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import AddIcon from "@mui/icons-material/Add";
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -16,6 +17,8 @@ import PersonIcon from '@mui/icons-material/Person';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import HomeIcon from '@mui/icons-material/Home';
 import OtherHousesIcon from '@mui/icons-material/OtherHouses';
+import { Link } from "react-router-dom";
+
 
 const addresses = ['40 St. George Street', '15 King\'s College Circle', '6 Hoskin Ave']
 
@@ -26,32 +29,51 @@ function NavBar() {
   
     const toggleDrawer = (anchor, open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-        return;
+            return;
         }
-    
         setState({ ...state, [anchor]: open });
     };
     
+    const navList = [
+        {
+            text: "Home",
+            link: "/",
+            icon: <HomeIcon />
+        },
+        {
+            text: "Add Expenses",
+            link: "/add-expense",
+            icon: <AddIcon/>
+        },
+        {
+            text: "View Expenses",
+            link: "/view-expense",
+            icon: <AttachMoneyIcon />
+        }
+    ]
+
     const list = (anchor) => (
         <Box
-        sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
-        role="presentation"
+        sx={{ width: 250 }}
         onClick={toggleDrawer(anchor, false)}
         onKeyDown={toggleDrawer(anchor, false)}
         >
         <List>
-            {['Home', 'Add Expenses', 'View Expenses'].map((text, index) => (
-            <ListItem button key={text}>
-                <ListItemIcon>
-                {index === 0 ? <HomeIcon /> : <AttachMoneyIcon /> }
-                </ListItemIcon>
-                <ListItemText primary={text} />
-            </ListItem>
-            ))}
+            {navList.map((item, index) => {
+                const { text, icon, link } = item;
+                return(
+                <Link to={link} style={{ textDecoration: 'none' }}>
+                    <ListItem button key={text}> 
+                        {icon && <ListItemIcon>{icon}</ListItemIcon>}
+                        <ListItemText primary={text} />
+                    </ListItem>
+                </Link>
+                )
+            })}
         </List>
         <Divider />
         <List>
-            {['Profile', 'People', 'Houses'].map((text, index) => (
+            {['Profile', 'House Rules', 'Houses'].map((text, index) => (
             <ListItem button key={text}>
                 <ListItemIcon>
                 {index === 2 ? <OtherHousesIcon /> : <PersonIcon />}

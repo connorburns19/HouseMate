@@ -5,6 +5,7 @@ import AddIcon from "@mui/icons-material/Add";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import theme from "./Themes/theme.js";
 import NavBar from "./NavBar/NavBar";
+import { Link } from 'react-router-dom';
 
 function App() {
   return (
@@ -13,16 +14,19 @@ function App() {
         <NavBar />
         <div className="landing-page__flex-wrapper">
           <div className="landing-page__button-container">
-            <Button
-              startIcon={<AttachMoneyIcon />}
-              color="primary"
-              variant="contained"
-              className="landing-page__button button--color-blue"
-            >
-              <h1>View Expenses</h1>
-            </Button>
+            <Link to="/view-expense" style={{ textDecoration: 'none' }}>
+              <Button
+                startIcon={<AttachMoneyIcon />}
+                color="primary"
+                variant="contained"
+                className="landing-page__button button--color-blue"
+              >
+                <h1>View Expenses</h1>
+              </Button>
+            </Link>
           </div>
           <div className="landing-page__button-container">
+          <Link to="/add-expense" style={{ textDecoration: 'none' }}>
             <Button
               startIcon={<AddIcon />}
               color="secondary"
@@ -31,6 +35,7 @@ function App() {
             >
               <h1>Add Expenses</h1>
             </Button>
+            </Link>
           </div>
         </div>
       </ThemeProvider>

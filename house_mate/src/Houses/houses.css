@@ -1,0 +1,64 @@
+.button--color-blue{
+    background-color:red;
+  }
+  
+  .landing-page{
+    height:100%;
+  }
+  
+  .landing-page__flex-wrapper{
+    display:flex;
+    height:100%;
+    align-items:center;
+    justify-content:center;
+  }
+  
+  .landing-page__button-container{
+    width:20vw;
+    height:35vh;
+    padding:10vw;
+  
+  }
+  
+  /* .nav-bar__tool-bar{
+    background:transparent;
+    box-shadow: none;
+  } */
+  
+  .house-page__button{
+    height:100%;
+    width: 100%;
+  }
+  
+  .landing-page--dark{
+    background: #393E46;
+  }
+
+  .house-list{
+    background: #393E46;
+    padding:50px;
+    padding-top: 150px;
+    width:50%;
+    margin: auto;
+  }
+
+  .house-element{
+    padding: 30px;
+    text-align: center;
+    background: #FF9B6A;
+  }
+
+  .house-title{
+    color: white;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .house-img{
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .house-button{
+    background-color: #FF5151;
+  }

@@ -14,45 +14,54 @@
 
 
 
-.Image{
+.profile-page__image{
     float: left;
-    max-width: 500px;
+    max-width: 27vw;
     border-radius: 10%;
     
     
 }
-.ImageCommentContainer{
-    float: left;
-    width: 500px;
-    height: 1000px;
+
+
+
+
+.profile-page__image-container{
+    width: 30vw;
+    height: 100vh;
     margin-left: 50px;
     margin-top: 10px;
 
 }
-.DisplayName{
+.profile-page__displayname{
     float: left;
     font-family: monospace;
     font-size: 200%;
     
 }
-.InfoContainer{
-    margin-top: 10px;
-    float: left;
-    width: 550px;
-    height: 600px;
+.profile-page__infocontainer{
+    margin-top: 10vh;
+    overflow-y: hidden;
+    
+    width: 25vw;
+    height: 30vh;
+    
     font-family: monospace;
     font-size: 200%;
-    margin-left: 100px;
+    
     background-color: rgb(93, 133, 133);
     border-radius: 10px;
     padding: 10px;
 }
-.Comment{
-    margin-top: 5px;
+.profile-page__comment{
+    margin-top: 10px;
     float: left;
-    width: 500px;
-    height: 200px;
+    width: 25vw;
+    height: 15vh;
     background-color: rgb(93, 133, 133);
     border-radius: 10px;
     padding: 10px;
 }
+
+.profile-page--dark{
+    background: #393E46;
+  }

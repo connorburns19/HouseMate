@@ -4,62 +4,72 @@
     the final submission of the project.
 */
 /*
+SCHEMA:
 {
+    username: username of the user (primary key),
+    password: password of the user,
     name: name of the user,
     phone: phone number of the user,
-    username: username of the user,
-    password: password of the user,
     houses: list of house id's that the user is in,
+    expenses: list of expenses id's that the user has created,
     type: type of the user, either user or admin
 }
 */
 
 const users = [
 {
-    name: "user",
-    phone: "999 999 9999",
     username: "user",
     password: "user",
-    houses: [0, 5, 6],
+    name: "user",
+    phone: "999 999 9999",
+    houses: [0, 1, 2],
+    expenses: [],
     type: "User"
 },
 {
-    name: "admin",
-    phone: "888 888 8888",
     username: "admin",
     password: "admin",
-    houses: [5, 6],
+    name: "admin",
+    phone: "888 888 8888",
+    houses: [],
+    expenses: [],
     type: "Admin"
 },
 {
-    name: "Connor Burns",
-    phone: "123 456 7890",
     username: "burnsco2",
     password: "love309",
-    houses: [0, 2, 3],
+    name: "Connor Burns",
+    phone: "123 456 7890",
+    houses: [2],
+    expenses: [],
     type: "Admin"
 },
 {
-    name: "Nathan DeGoey",
-    phone: "226 868 8733",
     username: "degoeyna",
     password: "love309",
-    houses: [0, 1, 2],
+    name: "Nathan DeGoey",
+    phone: "226 868 8733",
+    houses: [1, 2],
+    expenses: [],
     type: "User"
 },
 {
-    name: "Ekagra Luthra",
-    phone: "000 000 0000",
     username: "luthraek",
     password: "love309",
-    houses: [4],
+    name: "Ekagra Luthra",
+    phone: "000 000 0000",
+    houses: [1],
+    expenses: [],
     type: "User"
 },
 {
-    name: "Sal Cerna Neri",
-    phone: "111 111 1111",
     username: "cernasal",
     password: "love309",
-    houses: [2],
+    name: "Sal Cerna Neri",
+    phone: "111 111 1111",
+    houses: [1],
+    expenses: [],
     type: "User"
 }]
+
+export default users;

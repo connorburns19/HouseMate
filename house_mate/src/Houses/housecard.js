@@ -2,12 +2,8 @@
     This file was pair-programmed with Connor Burns and Nathan DeGoey (committer)
 */
 
-import "./houses.css";
+import "./HousePage.css";
 import Button from "@mui/material/Button";
-import { ThemeProvider } from "@mui/material/styles";
-import theme from "../Themes/theme.js";
-import NavBar from "../NavBar/NavBar";
-import Stack from '@mui/material/Stack';
 
 const HouseCard = props => {
   return (

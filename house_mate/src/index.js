@@ -4,11 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AddExpense from './AddExpense/AddExpense';
-import House from './Houses/houses';
+import HousePage from './Houses/HousePage';
 
 ReactDOM.render(
   <React.StrictMode>
-    <House/>
+    <HousePage/>
   </React.StrictMode>,
   document.getElementById('root')
 );

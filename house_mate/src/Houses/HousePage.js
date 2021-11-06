@@ -1,29 +1,11 @@
-import "./houses.css";
+import "./HousePage.css";
 import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../Themes/theme.js";
 import NavBar from "../NavBar/NavBar";
 import Stack from '@mui/material/Stack';
-import HouseCard from "./housecard";
-
-const houses = [{
-  address: "15 King's College Circle",
-  imagelink: "https://www.utoronto.ca/sites/default/files/UC--by-Laura.jpg",
-  id: 0,
-  members: ["user", "luthraek", "cernasal"]
-},
-{
-  address: "40 St. George Street",
-  imagelink: "https://www.thestar.com/content/dam/thestar/news/gta/2019/09/30/safety-barriers-installed-at-bahen-centre-after-student-death-u-of-t-says/rm_suicide_01.jpg",
-  id: 1,
-  members: ["user", "degoeyna"]
-},
-{
-  address: "6 Hoskin Ave",
-  imagelink: "https://thevarsity.ca/wp-content/uploads/2017/11/COMMENT_Comment_in_Brief-SOFIA_LUDWIGTHE_VARSITY-Trinity_College.jpg",
-  id: 2,
-  members: ["user", "burnsco2", "degoeyna"]
-}]
+import HouseCard from "./HouseCard";
+import houses from '../Objects/Houses';
 
 /*
   Function for generating the houseCards of the current u
@@ -38,7 +20,7 @@ function displayUserHouses(username) {
   return houseCardList
 }
 
-function Houses() {
+function HousePage() {
   return (
     <div className="house-page house-page--dark">
       <ThemeProvider theme={theme}>
@@ -56,4 +38,4 @@ function Houses() {
   );
 }
 
-export default Houses;
+export default HousePage;

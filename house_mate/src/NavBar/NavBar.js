@@ -15,6 +15,9 @@ import ListItemText from '@mui/material/ListItemText';
 import PersonIcon from '@mui/icons-material/Person';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import HomeIcon from '@mui/icons-material/Home';
+import OtherHousesIcon from '@mui/icons-material/OtherHouses';
+
+const addresses = ['40 St. George Street', '15 King\'s College Circle', '6 Hoskin Ave']
 
 function NavBar() {
     const [state, setState] = React.useState({
@@ -48,10 +51,10 @@ function NavBar() {
         </List>
         <Divider />
         <List>
-            {['Profile'].map((text, index) => (
+            {['Profile', 'People', 'Houses'].map((text, index) => (
             <ListItem button key={text}>
                 <ListItemIcon>
-                {<PersonIcon />}
+                {index === 2 ? <OtherHousesIcon /> : <PersonIcon />}
                 </ListItemIcon>
                 <ListItemText primary={text} />
             </ListItem>
@@ -77,7 +80,8 @@ function NavBar() {
                     </Drawer>
                 </React.Fragment>
             ))}
-                <h1 className="nav-bar__address-text address-text--white">40 St George Street</h1>
+                <h1 className="nav-bar__address-text address-text--white">{addresses[1]}</h1>
+                {/* addresses[] will be replaced with the users address in something like users.addresses */}
             </ToolBar>
         </AppBar>
     );

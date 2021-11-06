@@ -1,18 +1,13 @@
 import "./houses.css";
 import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
-import AddIcon from "@mui/icons-material/Add";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import theme from "../Themes/theme.js";
 import NavBar from "../NavBar/NavBar";
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
-import { styled } from '@mui/material/styles';
 
 function Houses() {
   return (
-    <div className="landing-page landing-page--dark">
+    <div className="house-page house-page--dark">
       <ThemeProvider theme={theme}>
         <NavBar />
         <div className="house-list">

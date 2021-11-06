@@ -2,35 +2,16 @@
     background-color:red;
   }
   
-  .landing-page{
+  .house-page{
     height:100%;
   }
-  
-  .landing-page__flex-wrapper{
-    display:flex;
-    height:100%;
-    align-items:center;
-    justify-content:center;
-  }
-  
-  .landing-page__button-container{
-    width:20vw;
-    height:35vh;
-    padding:10vw;
-  
-  }
-  
-  /* .nav-bar__tool-bar{
-    background:transparent;
-    box-shadow: none;
-  } */
   
   .house-page__button{
     height:100%;
     width: 100%;
   }
   
-  .landing-page--dark{
+  .house-page--dark{
     background: #393E46;
   }
 

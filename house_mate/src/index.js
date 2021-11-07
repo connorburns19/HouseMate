@@ -10,8 +10,10 @@ import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
 import NavBar from "./NavBar/NavBar";
 import Profile from "./Profile";
 import HouseRules from "./HouseRules/HouseRules";
+import { GlobalProvider } from './context/GlobalState';
 
 ReactDOM.render(
+  <GlobalProvider>
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
@@ -23,7 +25,8 @@ ReactDOM.render(
         <Route path="/house-rules" element={<HouseRules />} />
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>,
+  </React.StrictMode>
+  </GlobalProvider>,
   document.getElementById("root")
 );
 

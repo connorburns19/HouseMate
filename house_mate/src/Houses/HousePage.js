@@ -57,7 +57,7 @@ function HousePage({user}) {
               <JoinHouseFormDialog setHouseMember={addMemberToHouse} />
               <NewHouseFormDialog />
               <h2 className="house-title">Your Houses</h2>
-              {users["user"].houses.map((element, index) => <HouseCard address={houses[index].address} imagelink={houses[index].imagelink}/>)}
+              {users["user"].houses.map((element, index) => <HouseCard address={houses[index].address} imagelink={houses[index].imagelink} id={index}/>)}
             </Stack>
 
         </div>

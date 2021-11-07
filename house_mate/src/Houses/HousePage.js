@@ -1,52 +1,65 @@
 import "./HousePage.css";
-import Button from "@mui/material/Button";
+import * as React from 'react';
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../Themes/theme.js";
 import NavBar from "../NavBar/NavBar";
 import Stack from '@mui/material/Stack';
 import HouseCard from "./HouseCard";
 import houses from '../Objects/Houses';
-import CurrUser from "../Objects/CurrUser";
-import { useState } from "react";
+import NewHouseFormDialog from "./NewHouseForm";
+import JoinHouseFormDialog from "./JoinHouseForm";
+import {users, joinHouse} from '../Objects/Users';
 
-/*
-  Function for generating the houseCards of the current u
-*/
-function displayUserHouses(username) {
-  //The implementation of this function will change to 
-  //knowing which houses to display from the currUsers house array
-  const houseCardList = [];
-  for (let i=0; i < houses.length; i++) {
-    if (houses[i].members.includes(username)) {
-      houseCardList.push(<HouseCard address={houses[i].address} imagelink={houses[i].imagelink}/>);
-    }
-  }
-  return houseCardList;
-}
+// const currUser = CurrUser(); //The current user
 
-function createHouse() {
+// function displayUserHouses() {
+//   const houseCardList = [];
+//   for (let i=0; i < users["user"].houses.length; i++){
+//     const houseInd = users["user"].houses[i]
+//     houseCardList.push(<HouseCard address={houses[houseInd].address} imagelink={houses[houseInd].imagelink}/>)
+//   }
+//   return houseCardList;
+// }
 
-}
+function HousePage({user}) {
+  const [houseMember, addMemberToHouse] = React.useState();
+  // const [openJoin, setOpenJoin] = React.useState(false);
+  // const [openCreate, setOpenCreate] = React.useState(false);
+  // const [houseID, setHouse] = React.useState();
+  // const [houseAddress, setAddress] = React.useState();
+  // const [houseLink, setLink] = React.useState();
 
-function joinHouse(username, houseID) {
-  return houses[houseID].members.push(username)
-}
+  // function createHouse() {
+  //   const id = houses.length;
+  //   const newHouse = {
+  //     id: id,
+  //     address: houseAddress,
+  //     imagelink: houseLink,
+  //     members: [currUser.username]
+  //   };
+  //   houses.push(newHouse);
+  //   currUser.houses.push(id);
+  // }
 
-function HousePage() {
-  const [houseMember, addMemberToHouse] = useState()
+  // function joinHouse() {
+  //   currUser.houses.push(houseID);
+  //   houses[houseID].members.push(currUser.username);
+  // }
+
+
   return (
     <div className="house-page house-page--dark">
       <ThemeProvider theme={theme}>
         <NavBar />
         <div className="house-list">
             
-            <Stack spacing={2}>
-              <Button onClick={() => addMemberToHouse(joinHouse("luthraek", 2))}>Join house</Button>
-              <Button>Create new house</Button>
+            <Stack className="house-stack" spacing={2}>
+              <JoinHouseFormDialog setHouseMember={addMemberToHouse} />
+              <NewHouseFormDialog />
               <h2 className="house-title">Your Houses</h2>
-              
-              {displayUserHouses("luthraek")}
+              {users["user"].houses.map((element, index) => <HouseCard address={houses[index].address} imagelink={houses[index].imagelink}/>)}
             </Stack>
+
         </div>
       </ThemeProvider>
     </div>

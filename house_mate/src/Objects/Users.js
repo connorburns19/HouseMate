@@ -17,19 +17,17 @@ SCHEMA:
 }
 */
 
-const users = [
-{
-    username: "user",
+export const users = {
+"user": {
     password: "user",
     name: "user",
     phone: "999 999 9999",
-    houses: [0, 1, 2],
+    houses: [0, 1],
     expenses: [],
     type: "User",
     currUser: true
 },
-{
-    username: "admin",
+"admin": {
     password: "admin",
     name: "admin",
     phone: "888 888 8888",
@@ -38,8 +36,7 @@ const users = [
     type: "Admin",
     currUser: false
 },
-{
-    username: "burnsco2",
+"burnsco2": {
     password: "love309",
     name: "Connor Burns",
     phone: "123 456 7890",
@@ -48,8 +45,7 @@ const users = [
     type: "Admin",
     currUser: false
 },
-{
-    username: "degoeyna",
+"degoeyna": {
     password: "love309",
     name: "Nathan DeGoey",
     phone: "226 868 8733",
@@ -58,8 +54,7 @@ const users = [
     type: "User",
     currUser: false
 },
-{
-    username: "luthraek",
+"luthraek": {
     password: "love309",
     name: "Ekagra Luthra",
     phone: "000 000 0000",
@@ -68,8 +63,7 @@ const users = [
     type: "User",
     currUser: false
 },
-{
-    username: "cernasal",
+"cernasal": {
     password: "love309",
     name: "Sal Cerna Neri",
     phone: "111 111 1111",
@@ -77,6 +71,13 @@ const users = [
     expenses: [],
     type: "User",
     currUser: false
-}]
+}}
 
-export default users;
+export function joinHouse(username, houseID) {
+   
+    const newHouseArray = [...users[username].houses, houseID];
+    users[username] = {...users[username], houses: newHouseArray};
+    console.log(users[username].houses);
+
+}
+

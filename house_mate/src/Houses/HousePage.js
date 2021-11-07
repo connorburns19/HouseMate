@@ -3,7 +3,7 @@ import * as React from 'react';
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../Themes/theme.js";
 import NavBar from "../NavBar/NavBar";
-import Stack from '@mui/material/Stack';
+import Stack from "@mui/material/Stack";
 import HouseCard from "./HouseCard";
 import houses from '../Objects/Houses';
 import NewHouseFormDialog from "./NewHouseForm";
@@ -63,7 +63,6 @@ function HousePage({user}) {
         </div>
       </ThemeProvider>
     </div>
-    
   );
 }
 

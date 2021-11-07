@@ -1,3 +1,4 @@
+import * as React from "react";
 import NavBar from "../NavBar/NavBar.js";
 import theme from "../Themes/theme.js";
 import { ThemeProvider } from "@mui/material/styles";
@@ -8,23 +9,54 @@ import {
   FilledInput,
   InputAdornment,
   TextField,
-	FormLabel,
-	Checkbox,
-	FormGroup,
-	FormControlLabel,
+  FormLabel,
+  Checkbox,
+  FormGroup,
+  FormControlLabel,
 } from "@mui/material";
 
-function AddExpense() {
+
+import { useState } from "react";
+
+import Button from "@mui/material/Button";
+import AddIcon from "@mui/icons-material/Add";
+
+function AddExpense({users}) {
+
+  const [amount, setAmount] = useState("");
+  const [description, setDescription] = useState("");
+  const [payees, setPayees] = useState([]);
+
+  const housemateList = [
+    'Connor Burns', 'Nathan DeGoey', 'Sal Neri'
+  ]
+
+  const addExpense = () => {
+    const expenseDetails = {
+        'amount' : amount,
+        'description' : description,
+        'payees': payees
+    }
+    console.log(expenseDetails);
+  }
+
   return (
     <div className="main-page main-page--dark">
       <ThemeProvider theme={theme}>
-				<NavBar />
+        <NavBar />
         <div className="add-expense-wrapper" color="primary">
-				<div className="main-page__title title-color--primary"><h1>Add an Expense:</h1></div>
+          <div className="main-page__title title-color--primary">
+            <h1>You've spent: ${users.expenses} this month</h1>
+          </div>
           <div className="add-expense__form">
-            <FormControl className="add-expense__amount" variant="filled" color="secondary" focused>
+            <FormControl
+              className="add-expense__amount"
+              variant="filled"
+              color="secondary"
+              focused
+            >
               <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
-              <FilledInput
+              <FilledInput onChange={event => setAmount(event.target.value)}
                 startAdornment={
                   <InputAdornment position="start">$</InputAdornment>
                 }
@@ -33,7 +65,7 @@ function AddExpense() {
           </div>
           <div className="add-expense__form">
             <TextField
-							className="add-expense__description"
+              className="add-expense__description"
               fullWidth
               color="secondary"
               focused
@@ -41,18 +73,43 @@ function AddExpense() {
               multiline
               rows={4}
               variant="filled"
+              onChange={event => setDescription(event.target.value)}
             />
           </div>
           <div className="add-expense__form">
-						<FormControl component="fieldset" variant="standard" className="add-expense__textfield">
-        			<FormLabel color="secondary" focused component="legend">Select payees:</FormLabel>
-						</FormControl>
-						<FormGroup className="add-expense__checkboxes">
-							<FormControlLabel control={<Checkbox color="secondary"/>} label={<FormLabel color="secondary" focused>Nathan DeGoey</FormLabel>} />
-							<FormControlLabel control={<Checkbox color="secondary"/>} label={<FormLabel color="secondary" focused>Connor Burns</FormLabel>} />
-							<FormControlLabel control={<Checkbox color="secondary"/>} label={<FormLabel color="secondary" focused>Sal Neri</FormLabel>} />
-						</FormGroup>
-					</div>
+            <FormControl
+              component="fieldset"
+              variant="standard"
+              className="add-expense__textfield"
+            >
+              <FormLabel color="secondary" focused component="legend">
+                Select payees:
+              </FormLabel>
+            </FormControl>
+            <FormGroup onChange={event => setPayees(event.target.value)} className="add-expense__checkboxes">
+              {housemateList.map((name) => (
+                <React.Fragment key={name}>
+                  <FormControlLabel
+                  control={<Checkbox color="secondary" />}
+                  label={
+                    <FormLabel color="secondary" focused>
+                      {name}
+                    </FormLabel>
+                  }
+                />
+                </React.Fragment>
+              ))}
+            </FormGroup>
+            <Button onClick = {addExpense}
+              startIcon={<AddIcon />}
+              color="secondary"
+              variant="contained"
+              className="add-expense__button"
+            >
+              Submit
+            </Button>
+
+          </div>
         </div>
       </ThemeProvider>
     </div>

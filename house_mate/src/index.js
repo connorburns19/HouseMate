@@ -4,11 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AddExpense from './AddExpense/AddExpense';
-import HousePage from './Houses/HousePage';
+import ViewExpense from './ViewExpenses/ViewExpense';
+import { BrowserRouter, Routes, Route, Router} from "react-router-dom";
+import NavBar from './NavBar/NavBar';
 
 ReactDOM.render(
   <React.StrictMode>
-    <HousePage/>
+    <BrowserRouter>
+      <Routes>
+          <Route path="/*" element={<App />}/>
+          <Route path="/view-expense" element={<ViewExpense />} />
+          <Route path="/add-expense" element={<AddExpense />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

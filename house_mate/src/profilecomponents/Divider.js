@@ -23,11 +23,11 @@ const TDivider = props => {
   return (
       
     <List sx={style} component="nav" aria-label="profile info">
-      <ListItem button>
+      <ListItem >
         <ListItemText primary={props.displayname} />
       </ListItem>
       <Divider />
-      <ListItem button>
+      <ListItem >
         <ListItemText primary={props.number} />
       </ListItem>
       <Divider />

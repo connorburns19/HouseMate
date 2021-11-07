@@ -68,7 +68,7 @@ function NavBar() {
     },
     {
       text: "House Rules",
-      link: "/",
+      link: "/house-rules",
       icon: <HomeWorkIcon />,
     },
     {

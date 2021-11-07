@@ -6,30 +6,46 @@ import NavBar from "../NavBar/NavBar";
 import Stack from '@mui/material/Stack';
 import HouseCard from "./HouseCard";
 import houses from '../Objects/Houses';
+import CurrUser from "../Objects/CurrUser";
+import { useState } from "react";
 
 /*
   Function for generating the houseCards of the current u
 */
 function displayUserHouses(username) {
-  const houseCardList = []
+  //The implementation of this function will change to 
+  //knowing which houses to display from the currUsers house array
+  const houseCardList = [];
   for (let i=0; i < houses.length; i++) {
     if (houses[i].members.includes(username)) {
-      houseCardList.push(<HouseCard address={houses[i].address} imagelink={houses[i].imagelink}/>)
+      houseCardList.push(<HouseCard address={houses[i].address} imagelink={houses[i].imagelink}/>);
     }
   }
-  return houseCardList
+  return houseCardList;
+}
+
+function createHouse() {
+
+}
+
+function joinHouse(username, houseID) {
+  return houses[houseID].members.push(username)
 }
 
 function HousePage() {
+  const [houseMember, addMemberToHouse] = useState()
   return (
     <div className="house-page house-page--dark">
       <ThemeProvider theme={theme}>
         <NavBar />
         <div className="house-list">
-            <h2 className="house-title">Your Houses</h2>
+            
             <Stack spacing={2}>
-              {displayUserHouses("user")}
-                <Button>Add House by house code</Button>
+              <Button onClick={() => addMemberToHouse(joinHouse("luthraek", 2))}>Join house</Button>
+              <Button>Create new house</Button>
+              <h2 className="house-title">Your Houses</h2>
+              
+              {displayUserHouses("luthraek")}
             </Stack>
         </div>
       </ThemeProvider>

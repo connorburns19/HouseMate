@@ -12,7 +12,8 @@ SCHEMA:
     phone: phone number of the user,
     houses: list of house id's that the user is in,
     expenses: list of expenses id's that the user has created,
-    type: type of the user, either user or admin
+    type: type of the user, either user or admin,
+    currUser: a boolean value indicating whether this user is the currUser
 }
 */
 
@@ -24,7 +25,8 @@ const users = [
     phone: "999 999 9999",
     houses: [0, 1, 2],
     expenses: [],
-    type: "User"
+    type: "User",
+    currUser: true
 },
 {
     username: "admin",
@@ -33,7 +35,8 @@ const users = [
     phone: "888 888 8888",
     houses: [],
     expenses: [],
-    type: "Admin"
+    type: "Admin",
+    currUser: false
 },
 {
     username: "burnsco2",
@@ -42,7 +45,8 @@ const users = [
     phone: "123 456 7890",
     houses: [2],
     expenses: [],
-    type: "Admin"
+    type: "Admin",
+    currUser: false
 },
 {
     username: "degoeyna",
@@ -51,7 +55,8 @@ const users = [
     phone: "226 868 8733",
     houses: [1, 2],
     expenses: [],
-    type: "User"
+    type: "User",
+    currUser: false
 },
 {
     username: "luthraek",
@@ -60,7 +65,8 @@ const users = [
     phone: "000 000 0000",
     houses: [1],
     expenses: [],
-    type: "User"
+    type: "User",
+    currUser: false
 },
 {
     username: "cernasal",
@@ -69,7 +75,8 @@ const users = [
     phone: "111 111 1111",
     houses: [1],
     expenses: [],
-    type: "User"
+    type: "User",
+    currUser: false
 }]
 
 export default users;

@@ -18,7 +18,7 @@ SCHEMA:
 */
 
 const users = [
-{
+  {
     username: "user",
     password: "user",
     name: "user",
@@ -26,9 +26,9 @@ const users = [
     houses: [0, 1, 2],
     expenses: [],
     type: "User",
-    currUser: true
-},
-{
+    currUser: true,
+  },
+  {
     username: "admin",
     password: "admin",
     name: "admin",
@@ -36,9 +36,9 @@ const users = [
     houses: [],
     expenses: [],
     type: "Admin",
-    currUser: false
-},
-{
+    currUser: false,
+  },
+  {
     username: "burnsco2",
     password: "love309",
     name: "Connor Burns",
@@ -46,9 +46,9 @@ const users = [
     houses: [2],
     expenses: [],
     type: "Admin",
-    currUser: false
-},
-{
+    currUser: false,
+  },
+  {
     username: "degoeyna",
     password: "love309",
     name: "Nathan DeGoey",
@@ -56,9 +56,9 @@ const users = [
     houses: [1, 2],
     expenses: [],
     type: "User",
-    currUser: false
-},
-{
+    currUser: false,
+  },
+  {
     username: "luthraek",
     password: "love309",
     name: "Ekagra Luthra",
@@ -66,9 +66,9 @@ const users = [
     houses: [1],
     expenses: [],
     type: "User",
-    currUser: false
-},
-{
+    currUser: false,
+  },
+  {
     username: "cernasal",
     password: "love309",
     name: "Sal Cerna Neri",
@@ -76,7 +76,8 @@ const users = [
     houses: [1],
     expenses: [],
     type: "User",
-    currUser: false
-}]
+    currUser: false,
+  },
+];
 
 export default users;

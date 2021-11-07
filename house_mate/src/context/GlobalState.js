@@ -35,7 +35,8 @@ export const GlobalProvider = ({ children }) => {
     return (<GlobalContext.Provider value={{
         currUser: state.currUser,
         currHouse: state.currHouse,
-        switchHouse
+        switchHouse,
+        setUser
     }}>
         {children}
     </GlobalContext.Provider>);

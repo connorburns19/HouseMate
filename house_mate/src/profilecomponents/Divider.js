@@ -21,13 +21,15 @@ const TDivider = props => {
         <ListItemText primary={props.displayname} />
       </ListItem>
       <Divider />
+      <ListItem button>
+        <ListItemText primary={props.number} />
+      </ListItem>
+      <Divider />
       <ListItem>
         <ListItemText primary={props.username} />
       </ListItem>
       <Divider />
-      <ListItem button>
-        <ListItemText primary={props.number} />
-      </ListItem>
+      
       <Divider light />
       
     </List>

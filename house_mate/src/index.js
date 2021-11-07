@@ -19,6 +19,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Routes>
         <Route path="/*" element={<Login />} />
+        <Route path="/home" element={<App />} />
         <Route path="/view-expense" element={<ViewExpense />} />
         <Route path="/add-expense" element={<AddExpense />} />
         <Route path="/houses" element={<HousePage />} />

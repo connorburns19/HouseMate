@@ -44,7 +44,7 @@ function NavBar() {
   const navList = [
     {
       text: "Home",
-      link: "/",
+      link: "/home",
       icon: <HomeIcon />,
     },
     {

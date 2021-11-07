@@ -3,13 +3,6 @@ import { useState } from "react";
 
 //Followed https://www.youtube.com/watch?v=ygV99J2Ehjs
 
-function setDisplayName(){
-    return(
-        <input />
-    )
-
-}
-
 
 
 export default function ChangeProfile(){

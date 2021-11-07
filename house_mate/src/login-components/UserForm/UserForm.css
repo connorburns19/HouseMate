@@ -1,0 +1,15 @@
+/* Styles for the UserForm React component */
+form {
+  text-align: center;
+}
+/* .root {
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  justify-content: center;
+  } */
+
+/* .MuiTextField-root {
+    position: relative;
+    width: '300px';
+  } */

@@ -25,7 +25,7 @@ function SignUpForm(){
         <TextField label="Name" variant="filled" required onChange={event =>setName(event.target.value)} /> <br></br>
         <TextField label="Phone Number" variant="filled"  required onChange={event =>setPhonenum(event.target.value)}  /> <br></br>
         <TextField label="Username" variant="filled" required onChange={event =>setUsername(event.target.value)} /> <br></br>
-        <TextField label="Password" variant="filled" required onChange={event =>setPassword(event.target.value)} />  <br></br>
+        <TextField label="Password" variant="filled" required type='password' onChange={event =>setPassword(event.target.value)} />  <br></br>
 
         <div>
           <Button variant="contained" onClick = {submitValue}>

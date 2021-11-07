@@ -19,7 +19,7 @@ function UserForm(){
   return (
       <form>
         <TextField label="Username" variant="filled" required onChange={event =>setUsername(event.target.value)} /> <br></br>
-        <TextField label="Password" variant="filled" required onChange={event =>setPassword(event.target.value)} />  <br></br>
+        <TextField label="Password" variant="filled" type='password' required onChange={event =>setPassword(event.target.value)} />  <br></br>
 
         <div>
           <Button variant="contained" onClick = {submitValue}>

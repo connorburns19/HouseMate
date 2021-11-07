@@ -8,6 +8,7 @@ import ViewExpense from './ViewExpenses/ViewExpense';
 import HousePage from './Houses/HousePage';
 import { BrowserRouter, Routes, Route, Router} from "react-router-dom";
 import NavBar from './NavBar/NavBar';
+import Profile from './Profile'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.render(
           <Route path="/view-expense" element={<ViewExpense />} />
           <Route path="/add-expense" element={<AddExpense />} />
           <Route path="/houses" element={<HousePage />} />
+          <Route path="/profile" element={<Profile/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

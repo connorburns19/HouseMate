@@ -1,4 +1,4 @@
-import users from "./Users";
+import {users} from "./Users";
 
 function CurrUser() {
     for (let i=0; i<users.length; i++) {

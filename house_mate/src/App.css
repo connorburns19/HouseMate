@@ -1,34 +1,35 @@
-.Column{
-  display: flex;
-  flex-direction: column;
-  flex-basis: 100%;
-  flex: 1;
+.button--color-blue{
+  background-color:red;
 }
 
-.Row{
+.landing-page{
+  height:100vh;
+}
+
+.landing-page__flex-wrapper{
   display:flex;
-  flex-direction:row;
-  flex-wrap:wrap;
-  background-color:fuchsia;
   height:100%;
+  align-items:center;
+  justify-content:center;
 }
 
-.App{
-  background-color:coral;
-  height:92vh;
+.landing-page__button-container{
+  width:20vw;
+  height:35vh;
+  padding:10vw;
+
 }
 
-.LeftColumn{
-  background-color: cornflowerblue;
+/* .nav-bar__tool-bar{
+  background:transparent;
+  box-shadow: none;
+} */
+
+.landing-page__button{
   height:100%;
+  width: 100%;
 }
 
-.RightColumn{
-  background-color:darkcyan;
-  height:100%;
-}
-
-.MidColumn{
-  background-color:darkkhaki;
-  height:100%;
+.landing-page--dark{
+  background: #393E46;
 }

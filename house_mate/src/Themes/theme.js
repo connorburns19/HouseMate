@@ -14,6 +14,9 @@ const theme = createTheme({
       },
       navbar: {
         main: '#FF5151',
+      },
+      text: {
+        primary: '#FF9B6A'
       }
     },
   }

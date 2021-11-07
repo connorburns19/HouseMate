@@ -1,3 +1,5 @@
 form {
+    float:left; display:inline; 
+    width: 49%;
     text-align: center;
   }

@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 import './SignUpForm.css'
 import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
+import {users} from '../../Objects/Users.js'
 
 function SignUpForm(){
+
   const [name, setName] = useState('');
   const [phonenum, setPhonenum] = useState('');
   const [username, setUsername] = useState('');
@@ -12,12 +14,17 @@ function SignUpForm(){
 
   const submitValue = () => {
     const formdetails = {
-        'name'     : name,
-        'phonenum' : phonenum,
-        'username' : username,
-        'password' : password,
+        password : password,
+        name     : name,
+        phone    : phonenum,
+        houses   : [],
+        expenses : [],
+        type     : "User",
+        currUser : false,
     }
     console.log(formdetails);
+    users[username] = formdetails;
+    console.log(users)
   }
 
   return (

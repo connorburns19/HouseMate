@@ -17,12 +17,13 @@ const houses = {
   0: {
     address: "15 King's College Circle",
     imagelink: "https://www.utoronto.ca/sites/default/files/UC--by-Laura.jpg",
-    members: ["user", "luthraek", "cernasal"]
+    members: ["user", "luthraek", "cernasal"],
   },
   1: {
     address: "40 St. George Street",
-    imagelink: "https://www.thestar.com/content/dam/thestar/news/gta/2019/09/30/safety-barriers-installed-at-bahen-centre-after-student-death-u-of-t-says/rm_suicide_01.jpg",
-    members: ["user", "degoeyna"]
+    imagelink:
+      "https://www.thestar.com/content/dam/thestar/news/gta/2019/09/30/safety-barriers-installed-at-bahen-centre-after-student-death-u-of-t-says/rm_suicide_01.jpg",
+    members: ["user", "degoeyna"],
   },
   2: {
     address: "6 Hoskin Ave",
@@ -30,4 +31,4 @@ const houses = {
     members: ["burnsco2", "degoeyna"]
   }}
 
-  export default houses;
+export default houses;

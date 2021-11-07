@@ -11,13 +11,14 @@ import NavBar from "./NavBar/NavBar";
 import Profile from "./Profile";
 import HouseRules from "./HouseRules/HouseRules";
 import { GlobalProvider } from './context/GlobalState';
+import Login from './login-components/Login/Login.js'
 
 ReactDOM.render(
   <GlobalProvider>
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/*" element={<App />} />
+        <Route path="/*" element={<Login />} />
         <Route path="/view-expense" element={<ViewExpense />} />
         <Route path="/add-expense" element={<AddExpense />} />
         <Route path="/houses" element={<HousePage />} />

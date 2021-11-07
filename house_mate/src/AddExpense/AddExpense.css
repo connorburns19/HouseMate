@@ -1,0 +1,32 @@
+.main-page{
+    height:100vh;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.main-page--dark{
+    background: #393E46;
+}
+
+.main-page__title{
+    text-align: center;
+}
+
+.title-color--primary{
+    color:#88E0EF;
+}
+
+.add-expense-wrapper{
+    padding:50px;
+    margin:10px;
+    width:45vw;
+}
+
+.add-expense__form{
+    padding:7px;
+}
+
+.add-expense__form h4{
+    color:whitesmoke;
+}

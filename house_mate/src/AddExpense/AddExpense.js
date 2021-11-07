@@ -1,3 +1,4 @@
+import * as React from "react";
 import NavBar from "../NavBar/NavBar.js";
 import theme from "../Themes/theme.js";
 import { ThemeProvider } from "@mui/material/styles";
@@ -14,10 +15,30 @@ import {
   FormControlLabel,
 } from "@mui/material";
 
+
+import { useState } from "react";
+
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 
 function AddExpense({users}) {
+
+  const [amount, setAmount] = useState("");
+  const [description, setDescription] = useState("");
+  const [payees, setPayees] = useState([]);
+
+  const housemateList = [
+    'Connor Burns', 'Nathan DeGoey', 'Sal Neri'
+  ]
+
+  const addExpense = () => {
+    const expenseDetails = {
+        'amount' : amount,
+        'description' : description,
+        'payees': payees
+    }
+    console.log(expenseDetails);
+  }
 
   return (
     <div className="main-page main-page--dark">
@@ -35,7 +56,7 @@ function AddExpense({users}) {
               focused
             >
               <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
-              <FilledInput
+              <FilledInput onChange={event => setAmount(event.target.value)}
                 startAdornment={
                   <InputAdornment position="start">$</InputAdornment>
                 }
@@ -52,6 +73,7 @@ function AddExpense({users}) {
               multiline
               rows={4}
               variant="filled"
+              onChange={event => setDescription(event.target.value)}
             />
           </div>
           <div className="add-expense__form">
@@ -64,33 +86,21 @@ function AddExpense({users}) {
                 Select payees:
               </FormLabel>
             </FormControl>
-            <FormGroup className="add-expense__checkboxes">
-              <FormControlLabel
-                control={<Checkbox color="secondary" />}
-                label={
-                  <FormLabel color="secondary" focused>
-                    Nathan DeGoey
-                  </FormLabel>
-                }
-              />
-              <FormControlLabel
-                control={<Checkbox color="secondary" />}
-                label={
-                  <FormLabel color="secondary" focused>
-                    Connor Burns
-                  </FormLabel>
-                }
-              />
-              <FormControlLabel
-                control={<Checkbox color="secondary" />}
-                label={
-                  <FormLabel color="secondary" focused>
-                    Sal Neri
-                  </FormLabel>
-                }
-              />
+            <FormGroup onChange={event => setPayees(event.target.value)} className="add-expense__checkboxes">
+              {housemateList.map((name) => (
+                <React.Fragment key={name}>
+                  <FormControlLabel
+                  control={<Checkbox color="secondary" />}
+                  label={
+                    <FormLabel color="secondary" focused>
+                      {name}
+                    </FormLabel>
+                  }
+                />
+                </React.Fragment>
+              ))}
             </FormGroup>
-            <Button 
+            <Button onClick = {addExpense}
               startIcon={<AddIcon />}
               color="secondary"
               variant="contained"

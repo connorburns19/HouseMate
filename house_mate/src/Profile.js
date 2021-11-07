@@ -7,9 +7,14 @@ import NavBar from "./NavBar";
 import { RIEToggle, RIEInput, RIETextArea, RIENumber, RIETags, RIESelect } from 'riek'
 import _ from 'lodash'
 import { Grid } from "@mui/material";
+import { Card, CardContent, Container } from '@mui/material';
+import Divider from "./profilecomponents/Divider";
+import ProfileCard from "./profilecomponents/ProfileCard";
 
-
-
+const user_number = 9053966805
+const user_display_name = 'Connor Burns'
+const username = 'connorburns19'
+const image = 'https://heightzone.com/wp-content/uploads/2020/08/e4c130396c1c9886e8a6d9962c3a9d.jpg'
 
 
 
@@ -22,47 +27,12 @@ function Profile() {
         <NavBar />
         
         <div className="profile-page__flex-wrapper">
-          <div class="profile-page__image-container">
-              <img
-                src="https://heightzone.com/wp-content/uploads/2020/08/e4c130396c1c9886e8a6d9962c3a9d.jpg"
-                class="profile-page__image"
-                ></img>
+            <ProfileCard image={image} number={user_number} display_name={user_display_name} username={username}/>    
+            <ProfileCard image={image} number={user_number} display_name={user_display_name} username={username}/>    
             
-            {/* <div class="profile-page__comment">
-              I like pizza and programming. I also like pizza and programming. I
-              also like pizza and programming. I also like pizza and
-              programming. I also like pizza and programming. I also like pizza
-              and programming. I also like pizza and programming.
-            </div> */}
-            <div class="profile-page__infocontainer">
-            {/* <Grid container spacing={2}>
-                <Grid item xs={8}>
-                    
-                </Grid>
-                <Grid item xs={4}>
-                    
-                </Grid>
-                <Grid item xs={4}>
-                    
-                </Grid>
-                <Grid item xs={8}>
-                    
-                </Grid>
-            </Grid> */}
-            {/* <div class="profile-page__displayname">
-              Connor Burns{" "}
-            </div>
-            connorburns191{" "}
-            <br></br>
-            905-396-6805{" "}  */}
-            <Button variant="contained">change name/number</Button>
 
-          </div>
-          
-          </div>
-
-          
         </div>
+        
 
       </ThemeProvider>
     </div>

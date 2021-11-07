@@ -18,6 +18,7 @@ ReactDOM.render(
           <Route path="/view-expense" element={<ViewExpense />} />
           <Route path="/add-expense" element={<AddExpense />} />
           <Route path="/houses" element={<HousePage />} />
+          <Route path="/profile" element={<Profile/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

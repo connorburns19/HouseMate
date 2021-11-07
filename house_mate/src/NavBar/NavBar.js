@@ -57,7 +57,7 @@ function NavBar() {
     const navList2 = [
         {
             text: "Profile",
-            link: "/",
+            link: "/profile",
             icon: <PersonIcon />
         },
         {

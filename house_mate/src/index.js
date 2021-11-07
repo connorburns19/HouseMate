@@ -10,12 +10,14 @@ import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
 import NavBar from "./NavBar/NavBar";
 import Profile from "./Profile";
 import HouseRules from "./HouseRules/HouseRules";
+import Login from './login-components/Login/Login.js'
+// import SignUp from './login-components/SignUp/SignUp.js'
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/*" element={<App />} />
+        <Route path="/*" element={<Login />} />
         <Route path="/view-expense" element={<ViewExpense />} />
         <Route path="/add-expense" element={<AddExpense />} />
         <Route path="/houses" element={<HousePage />} />

@@ -4,10 +4,12 @@ import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
 
 function SignUpForm(){
+
   const [name, setName] = useState('');
   const [phonenum, setPhonenum] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [users] = useState([]);
 
 
   const submitValue = () => {
@@ -18,6 +20,8 @@ function SignUpForm(){
         'password' : password,
     }
     console.log(formdetails);
+    users.push(formdetails);
+    console.log(users)
   }
 
   return (

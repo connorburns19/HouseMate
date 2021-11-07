@@ -1,5 +1,7 @@
 /* Styles for the UserForm React component */
 form {
+  float:left; display:inline; 
+  width: 49%;
   text-align: center;
 }
 /* .root {

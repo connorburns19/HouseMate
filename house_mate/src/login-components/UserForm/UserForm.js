@@ -3,18 +3,23 @@ import React, {useState} from 'react';
 import './UserForm.css'
 import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
-
+import {users} from '../../Objects/Users.js'
 
 function UserForm(){
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  // const [user] = useState([]);
 
   const submitValue = () => {
     const formdetails = {
         'username' : username,
         'password' : password,
     }
-    console.log(formdetails);
+   if (username in users){
+     if (users[username].password ===password){
+       console.log('success')
+     }
+   }
   }
   return (
       <form>

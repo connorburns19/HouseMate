@@ -7,7 +7,6 @@ function Header() {
     return (
       <div className="header">
         <h1> Housemate </h1>
-        {/* <h3> login </h3> */}
       </div>
     );
   }

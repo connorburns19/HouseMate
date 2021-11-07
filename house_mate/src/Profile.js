@@ -3,8 +3,7 @@ import "./Profile.css";
 import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./Themes/theme.js";
-import NavBar from "./NavBar";
-import { RIEToggle, RIEInput, RIETextArea, RIENumber, RIETags, RIESelect } from 'riek'
+import NavBar from "./NavBar/NavBar";
 import _ from 'lodash'
 import { Grid } from "@mui/material";
 import { Card, CardContent, Container } from '@mui/material';

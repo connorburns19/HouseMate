@@ -20,14 +20,13 @@ import OtherHousesIcon from "@mui/icons-material/OtherHouses";
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
 
 import { Link } from "react-router-dom";
-
-const addresses = [
-  "40 St. George Street",
-  "15 King's College Circle",
-  "6 Hoskin Ave",
-];
+import { GlobalContext } from '../context/GlobalState';
+import houses from "../Objects/Houses";
 
 function NavBar() {
+
+  const { currHouse } = React.useContext(GlobalContext);
+
   const [state, setState] = React.useState({
     visible: false,
   });
@@ -133,9 +132,8 @@ function NavBar() {
           </React.Fragment>
         ))}
         <h1 className="nav-bar__address-text" style={{ color: "white" }}>
-          {addresses[1]}
+          {currHouse || currHouse === 0 ? houses[parseInt(currHouse)].address : ''}
         </h1>
-        {/* addresses[] will be replaced with the users address in something like users.addresses */}
       </ToolBar>
     </AppBar>
   );

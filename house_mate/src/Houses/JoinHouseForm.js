@@ -8,15 +8,13 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import CurrUser from "../Objects/CurrUser";
-import houses from '../Objects/Houses';
-import {users, joinHouse} from '../Objects/Users';
-
-// const currUser = CurrUser();
+import {joinHouse} from '../Objects/Users';
+import { GlobalContext } from '../context/GlobalState';
 
 export default function JoinHouseFormDialog({setHouseMember}) {
   const [open, setOpen] = React.useState(false);
   const [houseID, setHouse] = React.useState();
+  const { currUser } = React.useContext(GlobalContext);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -24,7 +22,7 @@ export default function JoinHouseFormDialog({setHouseMember}) {
 
   const handleClose = () => {
     setHouseMember(false); //make sure that one peice of the state was changing
-    joinHouse("user", parseInt(houseID));
+    joinHouse(currUser, parseInt(houseID));
     setOpen(false);
   };
 

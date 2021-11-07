@@ -1,26 +1,11 @@
 import React from "react";
 import "./Profile.css";
-import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./Themes/theme.js";
 import NavBar from "./NavBar/NavBar";
-import {
-  RIEToggle,
-  RIEInput,
-  RIETextArea,
-  RIENumber,
-  RIETags,
-  RIESelect,
-} from "riek";
 import _ from "lodash";
-import { Grid } from "@mui/material";
-import { Card, CardContent, Container } from "@mui/material";
-import Divider from "./profilecomponents/Divider";
 import PersonalProfileCard from "./profilecomponents/PersonalProfileCard";
-import ChangeProfile from "./profilecomponents/ChangeProfile";
-import { useState } from "react";
 import CurrUser from "./Objects/CurrUser";
-import users from "./Objects/Users";
 
 // let user_number = CurrUser.phone
 // let user_display_name = CurrUser.name

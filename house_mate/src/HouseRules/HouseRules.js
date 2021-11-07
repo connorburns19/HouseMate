@@ -1,15 +1,10 @@
 import React from "react";
 import "../Profile.css";
-import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../Themes/theme.js";
 import NavBar from "../NavBar/NavBar";
-
 import _ from "lodash";
-
 import ProfileCard from "../profilecomponents/ProfileCard";
-
-import { useState } from "react";
 
 let user_number = "9053966805";
 let user_display_name = "Connor";

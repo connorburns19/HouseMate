@@ -25,7 +25,7 @@ function displayUserHouses(username) {
 }
 
 function createHouse() {
-
+  //Function to create the house
 }
 
 function joinHouse(username, houseID) {

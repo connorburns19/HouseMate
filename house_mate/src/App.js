@@ -31,7 +31,7 @@ function App() {
               startIcon={<AddIcon />}
               color="secondary"
               variant="contained"
-              className="landing-page__button button--color-green"
+              className="landing-page__button"
             >
               <h1>Add Expenses</h1>
             </Button>

@@ -9,6 +9,7 @@ import HousePage from './Houses/HousePage';
 import { BrowserRouter, Routes, Route, Router} from "react-router-dom";
 import NavBar from './NavBar/NavBar';
 import Profile from './Profile'
+import users from './Objects/Users';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,7 +17,7 @@ ReactDOM.render(
       <Routes>
           <Route path="/*" element={<App />}/>
           <Route path="/view-expense" element={<ViewExpense />} />
-          <Route path="/add-expense" element={<AddExpense />} />
+          <Route path="/add-expense" element={<AddExpense users={users[0]}/>} />
           <Route path="/houses" element={<HousePage />} />
           <Route path="/profile" element={<Profile/>}/>
       </Routes>

@@ -14,14 +14,18 @@ import {
   FormControlLabel,
 } from "@mui/material";
 
-function AddExpense() {
+import Button from "@mui/material/Button";
+import AddIcon from "@mui/icons-material/Add";
+
+function AddExpense({users}) {
+
   return (
     <div className="main-page main-page--dark">
       <ThemeProvider theme={theme}>
         <NavBar />
         <div className="add-expense-wrapper" color="primary">
           <div className="main-page__title title-color--primary">
-            <h1>Add an Expense:</h1>
+            <h1>You've spent: ${users.expenses} this month</h1>
           </div>
           <div className="add-expense__form">
             <FormControl
@@ -86,6 +90,15 @@ function AddExpense() {
                 }
               />
             </FormGroup>
+            <Button 
+              startIcon={<AddIcon />}
+              color="secondary"
+              variant="contained"
+              className="add-expense__button"
+            >
+              Submit
+            </Button>
+
           </div>
         </div>
       </ThemeProvider>

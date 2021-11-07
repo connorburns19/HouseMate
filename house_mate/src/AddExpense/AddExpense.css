@@ -30,3 +30,7 @@
 .add-expense__form h4{
     color:whitesmoke;
 }
+
+.add-expense__button{
+    margin:100px;
+}

@@ -24,7 +24,7 @@ const users = [
     name: "user",
     phone: "999 999 9999",
     houses: [0, 1, 2],
-    expenses: [],
+    expenses: [0],
     type: "User",
     currUser: true,
   },

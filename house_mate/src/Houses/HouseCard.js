@@ -1,7 +1,6 @@
 /*
     This file was pair-programmed with Connor Burns and Nathan DeGoey (committer)
 */
-
 import "./HousePage.css";
 import Button from "@mui/material/Button";
 

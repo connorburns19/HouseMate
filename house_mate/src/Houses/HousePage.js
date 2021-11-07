@@ -1,5 +1,4 @@
 import "./HousePage.css";
-import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../Themes/theme.js";
 import NavBar from "../NavBar/NavBar";
@@ -8,47 +7,55 @@ import HouseCard from "./HouseCard";
 import houses from '../Objects/Houses';
 import CurrUser from "../Objects/CurrUser";
 import { useState } from "react";
-import FormDialog from "./NewHouseForm";
+import NewHouseFormDialog from "./NewHouseForm";
+import JoinHouseFormDialog from "./JoinHouseForm";
 
 /*
   Function for generating the houseCards of the current u
 */
+const currUser = CurrUser(); //The current user
+
 function displayUserHouses(username) {
-  //The implementation of this function will change to 
-  //knowing which houses to display from the currUsers house array
   const houseCardList = [];
-  for (let i=0; i < houses.length; i++) {
-    if (houses[i].members.includes(username)) {
-      houseCardList.push(<HouseCard address={houses[i].address} imagelink={houses[i].imagelink}/>);
-    }
+  for (let i=0; i < currUser.houses.length; i++){
+    const houseInd = currUser.houses[i]
+    houseCardList.push(<HouseCard address={houses[houseInd].address} imagelink={houses[houseInd].imagelink}/>)
   }
   return houseCardList;
 }
 
-function createHouse() {
-  //Function to create the house
+function createHouse(address, imagelink) {
+  const id = houses.length;
+  const newHouse = {
+    id: id,
+    address: address,
+    imagelink: imagelink,
+    members: []
+  };
+  houses.push(newHouse);
+  joinHouse(id); //update the currUser's house list and add currUser to the new house's members
 }
 
-function joinHouse(username, houseID) {
-  return houses[houseID].members.push(username)
+function joinHouse(houseID) {
+  currUser.houses.push(houseID);
+  houses[houseID].members.push(currUser.username);
 }
 
 function HousePage() {
-  const [houseMember, addMemberToHouse] = useState()
+  const [houseMember, addMemberToHouse] = useState();
   return (
     <div className="house-page house-page--dark">
       <ThemeProvider theme={theme}>
         <NavBar />
         <div className="house-list">
             
-            <Stack spacing={2}>
-              <Button onClick={() => addMemberToHouse(joinHouse("luthraek", 2))}>Join house</Button>
-              {/* <Button onClick={() => }>Create new house</Button> */}
-              <FormDialog />
+            <Stack className="house-stack" spacing={2}>
+              <JoinHouseFormDialog />
+              <NewHouseFormDialog />
               <h2 className="house-title">Your Houses</h2>
-              
-              {displayUserHouses("luthraek")}
+              {displayUserHouses(currUser.username)}
             </Stack>
+
         </div>
       </ThemeProvider>
     </div>

@@ -9,7 +9,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-export default function NewHouseFormDialog() {
+export default function JoinHouseFormDialog() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -22,36 +22,28 @@ export default function NewHouseFormDialog() {
 
   return (
     <div>
-      <Button className="create-house-button" variant="outlined" onClick={handleClickOpen}>
-        Create House
+      <Button className="join-house-button" variant="outlined" onClick={handleClickOpen}>
+        Join House
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Create House</DialogTitle>
+        <DialogTitle>Join House</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Fill in the information fields below to create a new house:
+            Enter the unique ID of the house you wish to join:
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="Address"
-            type="address"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            margin="dense"
-            id="name"
-            label="Image Link"
-            type="link"
+            label="House ID"
+            type="id"
             fullWidth
             variant="standard"
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Create</Button>
+          <Button onClick={handleClose}>Join</Button>
         </DialogActions>
       </Dialog>
     </div>

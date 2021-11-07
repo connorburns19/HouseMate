@@ -17,6 +17,8 @@ import PersonIcon from '@mui/icons-material/Person';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import HomeIcon from '@mui/icons-material/Home';
 import OtherHousesIcon from '@mui/icons-material/OtherHouses';
+import HomeWorkIcon from '@mui/icons-material/HomeWork';
+
 import { Link } from "react-router-dom";
 
 
@@ -52,6 +54,24 @@ function NavBar() {
         }
     ]
 
+    const navList2 = [
+        {
+            text: "Profile",
+            link: "/",
+            icon: <PersonIcon />
+        },
+        {
+            text: "House Rules",
+            link: "/",
+            icon: <HomeWorkIcon />
+        },
+        {
+            text: "Houses",
+            link: "/houses",
+            icon: <OtherHousesIcon />
+        }
+    ]
+
     const list = (anchor) => (
         <Box
         sx={{ width: 250 }}
@@ -73,14 +93,17 @@ function NavBar() {
         </List>
         <Divider />
         <List>
-            {['Profile', 'House Rules', 'Houses'].map((text, index) => (
-            <ListItem button key={text}>
-                <ListItemIcon>
-                {index === 2 ? <OtherHousesIcon /> : <PersonIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-            </ListItem>
-            ))}
+            {navList2.map((item, index) => {
+                const { text, icon, link } = item;
+                return(
+                <Link to={link} style={{ textDecoration: 'none' }}>
+                    <ListItem button key={text}> 
+                        {icon && <ListItemIcon>{icon}</ListItemIcon>}
+                        <ListItemText primary={text} />
+                    </ListItem>
+                </Link>
+                )
+            })}
         </List>
         </Box>
     );

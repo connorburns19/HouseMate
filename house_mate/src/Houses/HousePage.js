@@ -8,6 +8,7 @@ import HouseCard from "./HouseCard";
 import houses from '../Objects/Houses';
 import CurrUser from "../Objects/CurrUser";
 import { useState } from "react";
+import FormDialog from "./NewHouseForm";
 
 /*
   Function for generating the houseCards of the current u
@@ -42,7 +43,8 @@ function HousePage() {
             
             <Stack spacing={2}>
               <Button onClick={() => addMemberToHouse(joinHouse("luthraek", 2))}>Join house</Button>
-              <Button>Create new house</Button>
+              {/* <Button onClick={() => }>Create new house</Button> */}
+              <FormDialog />
               <h2 className="house-title">Your Houses</h2>
               
               {displayUserHouses("luthraek")}

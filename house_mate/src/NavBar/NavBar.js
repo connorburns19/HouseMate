@@ -23,12 +23,6 @@ import { Link } from "react-router-dom";
 import { GlobalContext } from '../context/GlobalState';
 import houses from "../Objects/Houses";
 
-const addresses = [
-  "40 St. George Street",
-  "15 King's College Circle",
-  "6 Hoskin Ave",
-];
-
 function NavBar() {
 
   const { currHouse } = React.useContext(GlobalContext);

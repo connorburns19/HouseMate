@@ -20,6 +20,7 @@ function SignUpForm(){
         houses   : [],
         expenses : [],
         type     : "User",
+        currUser : false,
     }
     console.log(formdetails);
     users[username] = formdetails;

@@ -6,7 +6,7 @@ Actions: define what type of things you can do to your state
 */
 // Initial State
 const initialState = {
-    currUser: "user",
+    currUser: null,
     currHouse: null
 }
 

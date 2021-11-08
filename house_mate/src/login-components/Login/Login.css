@@ -1,0 +1,35 @@
+.button--color-blue{
+    background-color:red;
+  }
+  
+  .landing-page{
+    height:100vh;
+  }
+  
+  .landing-page__flex-wrapper{
+    display:flex;
+    height:100%;
+    align-items:center;
+    justify-content:center;
+  }
+  
+  .landing-page__button-container{
+    width:20vw;
+    height:35vh;
+    padding:10vw;
+  
+  }
+  
+  /* .nav-bar__tool-bar{
+    background:transparent;
+    box-shadow: none;
+  } */
+  
+  .landing-page__button{
+    height:100%;
+    width: 100%;
+  }
+  
+  .landing-page--dark{
+    background: #393E46;
+  }

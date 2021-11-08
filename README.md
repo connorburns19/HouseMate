@@ -3,7 +3,7 @@
 HouseMate is a web application that simplifies the splitting of costs, made with with [Create React App](https://github.com/facebook/create-react-app). 
 
 # How to run the program/walkthrough
-To run the program, clone the repository and navigate to `team27/house_mate`. Then run the program with `npm start`, which will open [http://localhost:3000](http://localhost:3000)
+To run the program, clone the repository and navigate to `team27/house_mate`. Then run `npm install` (if this doesn't work, do `npm install --force` followed by `npm update --force`), then run the program with `npm start`, which will open [http://localhost:3000](http://localhost:3000)
 
 The user will be greeted with a login page. For the sake of the demo, login with username 'user' and password 'user'. To log in as an admin, use 'admin' as both the username and password. 
 Upon signing in, the user can see the 'Houses' page, where they can click a house to view expenses or add expenses to. 

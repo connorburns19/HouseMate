@@ -6,7 +6,7 @@ import NavBar from "../NavBar/NavBar";
 import _ from "lodash";
 import ProfileCard from "../profilecomponents/ProfileCard";
 import { users } from "../Objects/Users";
-import { houses } from "../Objects/Houses";
+import houses from "../Objects/Houses";
 
 let userlist = users;
 

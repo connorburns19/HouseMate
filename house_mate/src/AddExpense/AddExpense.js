@@ -46,7 +46,7 @@ function AddExpense({users}) {
         <NavBar />
         <div className="add-expense-wrapper" color="primary">
           <div className="main-page__title title-color--primary">
-            <h1>You've spent: ${users.expenses} this month</h1>
+            <h1>You've spent: $45 this month</h1>
           </div>
           <div className="add-expense__form">
             <FormControl

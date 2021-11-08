@@ -1,9 +1,7 @@
+//Cite: https://www.youtube.com/watch?v=XuFDcZABiDQ
+
 import React, { createContext, useReducer, userReducer } from 'react';
 import AppReducer from './AppReducer';
-//Reducer: uses action that you define to determine what changes happen to the application state
-/*
-Actions: define what type of things you can do to your state
-*/
 // Initial State
 const initialState = {
     currUser: null,

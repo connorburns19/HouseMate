@@ -2,7 +2,7 @@ import * as React from "react";
 import TDivider from "./Divider";
 import { useState } from "react";
 import { Button } from "@mui/material";
-import { users } from "../Objects/Users";
+import { users } from "../Objects/Users"; //change to database in Phase 2
 
 //Pair program Nathan
 

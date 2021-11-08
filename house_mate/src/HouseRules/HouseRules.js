@@ -5,7 +5,7 @@ import theme from "../Themes/theme.js";
 import NavBar from "../NavBar/NavBar";
 import _ from "lodash";
 import ProfileCard from "../profilecomponents/ProfileCard";
-import { users } from "../Objects/Users";
+import { users } from "../Objects/Users"; //change to database in Phase 2
 import houses from "../Objects/Houses";
 import { GlobalContext } from "../context/GlobalState";
 import { useContext } from "react";

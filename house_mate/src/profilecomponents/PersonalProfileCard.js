@@ -3,7 +3,7 @@ import TDivider from "./Divider";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import CurrUser from "../Objects/CurrUser";
-import { users } from "../Objects/Users";
+import { users } from "../Objects/Users"; //change to database in Phase 2
 import { GlobalContext } from "../context/GlobalState";
 import { useContext } from "react";
 

@@ -6,8 +6,8 @@ import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../Themes/theme.js";
 import { GlobalContext } from "../context/GlobalState";
-import * as React from 'react';
 import { useContext } from "react";
+import * as React from 'react';
 
 const HouseCard = props => {
 

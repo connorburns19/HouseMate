@@ -3,18 +3,35 @@ import theme from "../Themes/theme.js";
 import { ThemeProvider } from "@mui/material/styles";
 import './ViewExpense.css'
 import { Table, TableCell, TableHead, TableRow , TableBody} from "@mui/material";
+import { GlobalContext } from "../context/GlobalState";
+import { useContext } from "react";
+import houses from "../Objects/Houses.js";
+import { users } from "../Objects/Users.js";
+
 
 function addExpense(name, amount){
     return { name, amount };
 }
 
-const rows = [
-    addExpense('Connor Burns', -12.23),
-    addExpense('Nathan DeGoey', 10.50),
-    addExpense('Sal Neri', 24.20),
-]
-
 function ViewExpense(){
+
+    const { currHouse, currUser } = useContext(GlobalContext);
+
+    const houseMembers = houses[currHouse].members;
+
+    function createRows() {
+        const rows = []
+        for (var i=0; i < houseMembers.length; i++) {
+            const roommate = houseMembers[i]
+            if (roommate !== currUser){
+                rows.push(addExpense(users[roommate].name, 10.50));
+            }
+        }
+        return rows;
+    }
+
+    const rows = createRows();
+
     return(
         <div className="main-page main-page--dark">
             <ThemeProvider theme={theme}>

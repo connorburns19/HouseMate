@@ -3,21 +3,22 @@ import React, {useState} from 'react';
 import './UserForm.css'
 import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
-import {users} from '../../Objects/Users.js'
+import {users} from '../../Objects/Users.js';
+import { GlobalContext } from "../../context/GlobalState";
+import { useContext } from "react";
+import { useNavigate } from 'react-router-dom';
 
 function UserForm(){
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  // const [user] = useState([]);
+  const { setUser, currUser } = useContext(GlobalContext);
+  const navigate = useNavigate();
 
   const submitValue = () => {
-    const formdetails = {
-        'username' : username,
-        'password' : password,
-    }
    if (username in users){
-     if (users[username].password ===password){
-       console.log('success')
+     if (users[username].password === password){
+      setUser(username);
+      navigate("/houses");
      }
    }
   }

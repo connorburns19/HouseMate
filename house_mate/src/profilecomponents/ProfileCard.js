@@ -1,27 +1,61 @@
 import * as React from "react";
 import TDivider from "./Divider";
 import { useState } from "react";
+import { Button } from "@mui/material";
+import { users } from "../Objects/Users";
 
 //Pair program Nathan
 
 const ProfileCard = (props) => {
-  const [displayName, setDisplayName] = useState();
-  const [phoneNumber, setPhoneNumber] = useState();
+  function deleteUser() {
+    setDisplayName("User Deleted");
+    setPhoneNumber("User Deleted");
+    setUName("User Deleted");
+    setHouseList("User Deleted");
+    setImage(
+      "https://upload.wikimedia.org/wikipedia/commons/e/e0/Deleted_photo.png"
+    );
+  }
 
-  return (
-    <div class="profile-page__image-container">
-      <img src={props.image} class="profile-page__image"></img>
+  const [name, setDisplayName] = useState(users[props.username].name);
+  const [number, setPhoneNumber] = useState(users[props.username].phone);
+  const [username, setUName] = useState(props.username);
+  const [houses, setHouseList] = useState(users[props.username].houses);
+  const [img, setImage] = useState(props.image);
+  if (props.admin === "admin") {
+    return (
+      <div class="profile-page__image-container">
+        <img src={img} class="profile-page__image"></img>
 
-      <div class="profile-page__infocontainer">
-        <TDivider
-          displayname={props.display_name}
-          username={props.username}
-          number={props.number}
-        />
+        <div class="profile-page__infocontainer">
+          <TDivider
+            displayname={name}
+            username={username}
+            number={number}
+            house_list={houses}
+          />
 
-        {/* <Button onClick={() => setDisplayName(user_display_name='Yeee')}>change name</Button> */}
+          <Button onClick={() => deleteUser()}>delete user</Button>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div class="profile-page__image-container">
+        <img src={props.image} class="profile-page__image"></img>
+
+        <div class="profile-page__infocontainer">
+          <TDivider
+            displayname={props.display_name}
+            username={props.username}
+            number={props.number}
+            house_list={props.house_list}
+          />
+
+          {/* <Button onClick={() => setDisplayName(user_display_name='Yeee')}>change name</Button> */}
+        </div>
+      </div>
+    );
+  }
 };
 export default ProfileCard;

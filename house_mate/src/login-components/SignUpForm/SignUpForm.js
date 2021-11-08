@@ -3,6 +3,9 @@ import './SignUpForm.css'
 import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
 import {users} from '../../Objects/Users.js'
+import { GlobalContext } from "../../context/GlobalState";
+import { useContext } from "react";
+import { useNavigate } from 'react-router-dom';
 
 function SignUpForm(){
 
@@ -10,6 +13,8 @@ function SignUpForm(){
   const [phonenum, setPhonenum] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { setUser } = useContext(GlobalContext);
+  const navigate = useNavigate();
 
 
   const submitValue = () => {
@@ -22,9 +27,9 @@ function SignUpForm(){
         type     : "User",
         currUser : false,
     }
-    console.log(formdetails);
     users[username] = formdetails;
-    console.log(users)
+    setUser(username);
+    navigate("/houses");
   }
 
   return (

@@ -4,12 +4,15 @@ import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import CurrUser from "../Objects/CurrUser";
 import { users } from "../Objects/Users";
+import { GlobalContext } from "../context/GlobalState";
+import { useContext } from "react";
 
 //Pair program Nathan
 
 const ProfileCard = (props) => {
-  const [name, setDisplayName] = useState(users["burnsco2"].name);
-  const [number, setPhoneNumber] = useState(users["burnsco2"].phone);
+  const { currUser } = useContext(GlobalContext);
+  const [name, setDisplayName] = useState(users[currUser].name);
+  const [number, setPhoneNumber] = useState(users[currUser].phone);
 
   const [tempname, setTempName] = useState("");
   const [tempnumber, setTempPhoneNumber] = useState("");
@@ -54,7 +57,6 @@ const ProfileCard = (props) => {
         <div className="profile-page__info-element">
           <Button onClick={() => handleclick()}>Submit</Button>
         </div>
-        {/* <Button onClick={() => setDisplayName(user_display_name='Yeee')}>change name</Button> */}
       </div>
     </div>
   );

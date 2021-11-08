@@ -51,8 +51,6 @@ const ProfileCard = (props) => {
             number={props.number}
             house_list={props.house_list}
           />
-
-          {/* <Button onClick={() => setDisplayName(user_display_name='Yeee')}>change name</Button> */}
         </div>
       </div>
     );

@@ -3,12 +3,13 @@ import TDivider from "./Divider";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import CurrUser from "../Objects/CurrUser";
+import { users } from "../Objects/Users";
 
 //Pair program Nathan
 
 const ProfileCard = (props) => {
-  const [name, setDisplayName] = useState(CurrUser().name);
-  const [number, setPhoneNumber] = useState(CurrUser().phone);
+  const [name, setDisplayName] = useState(users["burnsco2"].name);
+  const [number, setPhoneNumber] = useState(users["burnsco2"].phone);
 
   const [tempname, setTempName] = useState("");
   const [tempnumber, setTempPhoneNumber] = useState("");
@@ -34,6 +35,7 @@ const ProfileCard = (props) => {
           displayname={name}
           username={props.username}
           number={number}
+          house_list={props.house_list}
         />
         <div className="profile-page__info-element">
           <TextField

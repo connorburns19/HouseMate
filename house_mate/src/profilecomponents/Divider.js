@@ -24,18 +24,32 @@ const TDivider = (props) => {
     <ThemeProvider theme={theme}>
       <List sx={style} component="nav" aria-label="profile info">
         <ListItem>
-          <ListItemText color="#3db8e9" primary={props.displayname} />
+          <ListItemText
+            color="#3db8e9"
+            primary={"Display Name: " + props.displayname}
+          />
         </ListItem>
         <Divider />
         <ListItem>
-          <ListItemText color="#3db8e9" primary={props.number} />
+          <ListItemText
+            color="#3db8e9"
+            primary={"Phone Number: " + props.number}
+          />
         </ListItem>
         <Divider />
         <ListItem>
-          <ListItemText color="#3db8e9" primary={props.username} />
+          <ListItemText
+            color="#3db8e9"
+            primary={"Username: " + props.username}
+          />
         </ListItem>
         <Divider />
-
+        <ListItem>
+          <ListItemText
+            color="#3db8e9"
+            primary={"House ID Memberships: " + props.house_list}
+          />
+        </ListItem>
         <Divider light />
       </List>
     </ThemeProvider>

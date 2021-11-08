@@ -5,10 +5,10 @@ import theme from "../Themes/theme.js";
 import NavBar from "../NavBar/NavBar";
 import Stack from "@mui/material/Stack";
 import HouseCard from "./HouseCard";
-import houses from '../Objects/Houses';
+import houses from '../Objects/Houses'; //change to database in Phase 2
 import NewHouseFormDialog from "./NewHouseForm";
 import JoinHouseFormDialog from "./JoinHouseForm";
-import {users, joinHouse} from '../Objects/Users';
+import {users} from '../Objects/Users';
 import { GlobalContext } from '../context/GlobalState';
 
 function displayUserHouses(user) {

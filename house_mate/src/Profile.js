@@ -5,10 +5,11 @@ import theme from "./Themes/theme.js";
 import NavBar from "./NavBar/NavBar";
 import _ from "lodash";
 import PersonalProfileCard from "./profilecomponents/PersonalProfileCard";
-import { users } from "./Objects/Users";
+import { users } from "./Objects/Users"; //change to database in Phase 2
 import { GlobalContext } from "./context/GlobalState";
 import { useContext } from "react";
 
+//change to database in Phase 2
 let image =
   "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
 

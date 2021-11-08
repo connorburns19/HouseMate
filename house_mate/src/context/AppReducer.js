@@ -1,5 +1,3 @@
-import houses from "../Objects/Houses";
-
 export default (state, action) => {
     switch(action.type) {
         case 'SWITCH_HOUSE':

@@ -1,9 +1,8 @@
-
 import React, {useState} from 'react';
 import './UserForm.css'
 import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
-import {users} from '../../Objects/Users.js';
+import {users} from '../../Objects/Users.js'; //change to database in Phase 2
 import { GlobalContext } from "../../context/GlobalState";
 import { useContext } from "react";
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 function UserForm(){
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { setUser, currUser } = useContext(GlobalContext);
+  const { setUser } = useContext(GlobalContext);
   const navigate = useNavigate();
 
   const submitValue = () => {

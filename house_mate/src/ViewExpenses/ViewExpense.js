@@ -37,7 +37,7 @@ function ViewExpense(){
             <ThemeProvider theme={theme}>
                 <NavBar />
                 <div className="view-expense-wrapper" color="primary">
-				    <div className="main-page__title title-color--primary"><h1>You Owe $69.42</h1></div>
+				    <div className="main-page__title title-color--primary"><h1>You Owe ${rows.length*10.50}</h1></div>
                     <Table>
                         <TableHead>
                             <TableRow>

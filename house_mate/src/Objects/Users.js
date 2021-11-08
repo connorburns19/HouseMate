@@ -77,7 +77,6 @@ export function joinHouse(username, houseID) {
    
     const newHouseArray = [...users[username].houses, houseID];
     users[username] = {...users[username], houses: newHouseArray};
-    console.log(users[username].houses);
 
 }
 

@@ -23,13 +23,23 @@ function Profile() {
         {currUser === "admin" ? <AdminNavBar /> : <NavBar />}
 
         <div className="profile-page__flex-wrapper">
-          <ProfileCard
-            image={image}
-            number={users[currUser].phone}
-            display_name={users[currUser].name}
-            username={currUser}
-            house_list={users[currUser].houses}
-          />
+          {currUser === "admin" ? (
+            <ProfileCard
+              image={image}
+              number={users[currUser].phone}
+              display_name={users[currUser].name}
+              username={currUser}
+              house_list={users[currUser].houses}
+            />
+          ) : (
+            <PersonalProfileCard
+              image={image}
+              number={users[currUser].phone}
+              display_name={users[currUser].name}
+              username={currUser}
+              house_list={users[currUser].houses}
+            />
+          )}
         </div>
       </ThemeProvider>
     </div>

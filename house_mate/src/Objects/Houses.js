@@ -12,8 +12,9 @@ SCHEMA:
     members: a list of usernames of the users who belong to this house
 }
 */
+import {joinHouse} from '../Objects/Users';
 
-const houses = {
+export const houses = {
   0: {
     address: "15 King's College Circle",
     imagelink: "https://www.utoronto.ca/sites/default/files/UC--by-Laura.jpg",
@@ -29,6 +30,17 @@ const houses = {
     address: "6 Hoskin Ave",
     imagelink: "https://thevarsity.ca/wp-content/uploads/2017/11/COMMENT_Comment_in_Brief-SOFIA_LUDWIGTHE_VARSITY-Trinity_College.jpg",
     members: ["burnsco2", "degoeyna"]
-  }}
+  }
+}
 
-export default houses;
+export function createHouse(addr, link) {
+
+  const houseID = Object.keys(houses).length
+  houses[houseID] = {
+    address: addr,
+    imagelink: link
+  };
+  
+  return houseID
+
+}

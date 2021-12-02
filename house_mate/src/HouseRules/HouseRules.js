@@ -3,15 +3,15 @@ import "../Profile.css";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../Themes/theme.js";
 import NavBar from "../NavBar/NavBar";
+import AdminNavBar from "../NavBar/AdminNavBar";
 import _ from "lodash";
 import ProfileCard from "../profilecomponents/ProfileCard";
 import { users } from "../Objects/Users"; //change to database in Phase 2
-import houses from "../Objects/Houses";
+import {houses} from "../Objects/Houses";
 import { GlobalContext } from "../context/GlobalState";
 import { useContext } from "react";
 
 function HouseRules() {
-
   const { currUser, currHouse } = useContext(GlobalContext);
   let userlist = users;
 
@@ -33,15 +33,17 @@ function HouseRules() {
       />
     );
   }
+  let usersnoadmin = Object.keys(userlist);
+  const final = usersnoadmin.filter((user) => user != "admin");
 
   if (currUser === "admin") {
     return (
       <div className="profile-page profile-page--dark">
         <ThemeProvider theme={theme}>
-          <NavBar />
+          <AdminNavBar />
 
           <div className="profile-page__flex-wrapper">
-            {Object.keys(userlist).map(outputProfile)}
+            {final.map(outputProfile)}
           </div>
         </ThemeProvider>
       </div>

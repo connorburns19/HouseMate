@@ -6,13 +6,13 @@ const theme = createTheme({
         main: '#88E0EF',
       },
       secondary: {
-        main: '#FF9B6A',
+        main: '#88E0EF',
       },
       ternary: {
         main: '#161E54',
       },
       navbar: {
-        main: '#FF5151',
+        main: '#88E0EF',
       },
       text: {
         primary: '#FF9B6A'

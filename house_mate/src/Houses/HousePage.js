@@ -6,7 +6,7 @@ import NavBar from "../NavBar/NavBar";
 import AdminNavBar from "../NavBar/AdminNavBar";
 import Stack from "@mui/material/Stack";
 import HouseCard from "./HouseCard";
-import houses from "../Objects/Houses"; //change to database in Phase 2
+import {houses} from '../Objects/Houses'; //change to database in Phase 2
 import NewHouseFormDialog from "./NewHouseForm";
 import JoinHouseFormDialog from "./JoinHouseForm";
 import { users } from "../Objects/Users";
@@ -29,18 +29,8 @@ function displayUserHouses(user) {
 
 function HousePage({ user }) {
   const [houseMember, addMemberToHouse] = React.useState();
+  const [houseCreate, createHouse] = React.useState();
   const { currUser } = React.useContext(GlobalContext);
-  // function createHouse() {
-  //   const id = houses.length;
-  //   const newHouse = {
-  //     id: id,
-  //     address: houseAddress,
-  //     imagelink: houseLink,
-  //     members: [currUser.username]
-  //   };
-  //   houses.push(newHouse);
-  //   currUser.houses.push(id);
-  // }
 
   const { currHouse } = React.useContext(GlobalContext);
   // console.log(currUser);
@@ -69,7 +59,7 @@ function HousePage({ user }) {
           <div className="house-list">
             <Stack className="house-stack" spacing={2}>
               <JoinHouseFormDialog setHouseMember={addMemberToHouse} />
-              <NewHouseFormDialog />
+              <NewHouseFormDialog setHouseMember={createHouse}/>
               <h2 className="house-title">Your Houses</h2>
               {displayUserHouses(currUser)}
             </Stack>

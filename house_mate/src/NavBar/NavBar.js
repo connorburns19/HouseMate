@@ -18,11 +18,11 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import HomeIcon from "@mui/icons-material/Home";
 import OtherHousesIcon from "@mui/icons-material/OtherHouses";
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
-
 import { Link } from "react-router-dom";
-import { GlobalContext } from "../context/GlobalState";
-import houses from "../Objects/Houses";
 import CurrUser from "../Objects/CurrUser";
+import { GlobalContext } from '../context/GlobalState';
+import {houses} from "../Objects/Houses";
+
 
 function NavBar() {
   const { currHouse } = React.useContext(GlobalContext);

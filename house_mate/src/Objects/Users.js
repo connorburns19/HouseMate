@@ -23,7 +23,7 @@ export const users = {
     name: "user",
     phone: "999 999 9999",
     houses: [0, 1],
-    expenses: [],
+    expenses: [0],
     type: "User",
     currUser: true
 },
@@ -32,7 +32,7 @@ export const users = {
     name: "admin",
     phone: "888 888 8888",
     houses: [],
-    expenses: [],
+    expenses: [1],
     type: "Admin",
     currUser: false
 },
@@ -41,7 +41,7 @@ export const users = {
     name: "Connor Burns",
     phone: "123 456 7890",
     houses: [2],
-    expenses: [],
+    expenses: [0, 1],
     type: "Admin",
     currUser: false
 },
@@ -50,7 +50,7 @@ export const users = {
     name: "Nathan DeGoey",
     phone: "226 868 8733",
     houses: [1, 2],
-    expenses: [],
+    expenses: [1],
     type: "User",
     currUser: false
 },
@@ -59,7 +59,7 @@ export const users = {
     name: "Ekagra Luthra",
     phone: "000 000 0000",
     houses: [1],
-    expenses: [],
+    expenses: [0],
     type: "User",
     currUser: false
 },
@@ -68,7 +68,7 @@ export const users = {
     name: "Sal Cerna Neri",
     phone: "111 111 1111",
     houses: [1],
-    expenses: [],
+    expenses: [0, 1],
     type: "User",
     currUser: false
 }}

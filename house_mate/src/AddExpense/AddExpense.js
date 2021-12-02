@@ -20,7 +20,7 @@ import { addNewExpense } from "../Objects/Expense.js";
 import { useState } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import { useContext } from "react";
-import houses from "../Objects/Houses.js"; //change to database in Phase 2
+import { houses } from "../Objects/Houses.js"; //change to database in Phase 2
 
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";

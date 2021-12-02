@@ -53,7 +53,7 @@ export default function JoinHouseFormDialog({setHouseMember}) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClickOff}>Cancel</Button>
           <Button onClick={handleClose}>Join</Button>
         </DialogActions>
       </Dialog>

@@ -65,7 +65,7 @@ export default function NewHouseFormDialog({setHouseMember}) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClickOff}>Cancel</Button>
           <Button onClick={handleClose}>Create</Button>
         </DialogActions>
       </Dialog>

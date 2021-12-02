@@ -15,29 +15,27 @@ import {
   FormControlLabel,
 } from "@mui/material";
 
+import { addNewExpense } from "../Objects/Expense.js";
 
 import { useState } from "react";
+import { GlobalContext } from "../context/GlobalState";
+import { useContext } from "react";
+import houses from "../Objects/Houses.js"; //change to database in Phase 2
 
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 
-function AddExpense({users}) {
+function AddExpense() {
+
+  const { currHouse, currUser } = useContext(GlobalContext);
+  const houseMembers = houses[currHouse].members;
 
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [payees, setPayees] = useState([]);
 
-  const housemateList = [
-    'Connor Burns', 'Nathan DeGoey', 'Sal Neri'
-  ]
-
   const addExpense = () => {
-    const expenseDetails = {
-        'amount' : amount,
-        'description' : description,
-        'payees': payees
-    }
-    console.log(expenseDetails);
+    addNewExpense(amount, description, payees);
   }
 
   return (
@@ -86,11 +84,23 @@ function AddExpense({users}) {
                 Select payees:
               </FormLabel>
             </FormControl>
-            <FormGroup onChange={event => setPayees(event.target.value)} className="add-expense__checkboxes">
-              {housemateList.map((name) => (
+            <FormGroup className="add-expense__checkboxes">
+              {houseMembers.map((name) => (
                 <React.Fragment key={name}>
                   <FormControlLabel
-                  control={<Checkbox color="secondary" />}
+                  control={<Checkbox value={name} onChange={event => {
+                    if (event.target.checked){
+                      if(payees.includes(event.target.value)){ return; }
+                      else{setPayees([...payees, event.target.value])}
+                    }else{
+                      const index = [...payees].indexOf(event.target.value);
+                      if(index > -1){
+                        setPayees([...payees].splice(index, 1))
+                      }
+                    } 
+                    }
+                  }
+                 color="secondary" />}
                   label={
                     <FormLabel color="secondary" focused>
                       {name}

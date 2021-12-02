@@ -24,7 +24,7 @@ import { GlobalContext } from "../context/GlobalState";
 import houses from "../Objects/Houses";
 import CurrUser from "../Objects/CurrUser";
 
-function NavBar() {
+function AdminNavBar() {
   const { currHouse } = React.useContext(GlobalContext);
 
   const [state, setState] = React.useState({
@@ -41,24 +41,6 @@ function NavBar() {
     setState({ ...state, [anchor]: open });
   };
 
-  const navList = [
-    {
-      text: "Home",
-      link: "/home",
-      icon: <HomeIcon />,
-    },
-    {
-      text: "Add Expenses",
-      link: "/add-expense",
-      icon: <AddIcon />,
-    },
-    {
-      text: "View Expenses",
-      link: "/view-expense",
-      icon: <AttachMoneyIcon />,
-    },
-  ];
-
   const navList2 = [
     {
       text: "Profile",
@@ -66,7 +48,7 @@ function NavBar() {
       icon: <PersonIcon />,
     },
     {
-      text: "People",
+      text: "All Users in Database",
       link: "/house-rules",
       icon: <HomeWorkIcon />,
     },
@@ -83,20 +65,6 @@ function NavBar() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
-        {navList.map((item, index) => {
-          const { text, icon, link } = item;
-          return (
-            <Link to={link} style={{ textDecoration: "none" }}>
-              <ListItem button key={text}>
-                {icon && <ListItemIcon>{icon}</ListItemIcon>}
-                <ListItemText primary={text} />
-              </ListItem>
-            </Link>
-          );
-        })}
-      </List>
-      <Divider />
       <List>
         {navList2.map((item, index) => {
           const { text, icon, link } = item;
@@ -141,4 +109,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default AdminNavBar;

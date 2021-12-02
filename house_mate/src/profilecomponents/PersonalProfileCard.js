@@ -6,6 +6,7 @@ import CurrUser from "../Objects/CurrUser";
 import { users } from "../Objects/Users"; //change to database in Phase 2
 import { GlobalContext } from "../context/GlobalState";
 import { useContext } from "react";
+// looked at https://stackoverflow.com/questions/24502898/show-or-hide-element-in-react for ? usage
 
 //Pair program Nathan
 

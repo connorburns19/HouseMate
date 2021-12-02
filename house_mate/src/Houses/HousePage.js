@@ -31,26 +31,7 @@ function HousePage({ user }) {
   const [houseMember, addMemberToHouse] = React.useState();
   const [houseCreate, createHouse] = React.useState();
   const { currUser } = React.useContext(GlobalContext);
-
   const { currHouse } = React.useContext(GlobalContext);
-  // console.log(currUser);
-  // if (currUser === "admin") {
-  //   return (
-  //     <div className="house-page house-page--dark">
-  //       <ThemeProvider theme={theme}>
-  //         <AdminNavBar />
-  //         <div className="house-list">
-  //           <Stack className="house-stack" spacing={2}>
-  //             <JoinHouseFormDialog setHouseMember={addMemberToHouse} />
-  //             <NewHouseFormDialog />
-  //             <h2 className="house-title">Your Houses</h2>
-  //             {displayUserHouses(currUser)}
-  //           </Stack>
-  //         </div>
-  //       </ThemeProvider>
-  //     </div>
-  //   );
-  // }
 
   if (currHouse == null && currUser != "admin") {
     return (
@@ -77,7 +58,7 @@ function HousePage({ user }) {
         <div className="house-list">
           <Stack className="house-stack" spacing={2}>
             <JoinHouseFormDialog setHouseMember={addMemberToHouse} />
-            <NewHouseFormDialog />
+            <NewHouseFormDialog setHouseMember={createHouse}/>
             <h2 className="house-title">Your Houses</h2>
             {displayUserHouses(currUser)}
           </Stack>

@@ -21,7 +21,7 @@ import HomeWorkIcon from "@mui/icons-material/HomeWork";
 
 import { Link } from "react-router-dom";
 import { GlobalContext } from '../context/GlobalState';
-import houses from "../Objects/Houses";
+import {houses} from "../Objects/Houses";
 
 function NavBar() {
 

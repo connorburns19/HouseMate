@@ -26,12 +26,16 @@ export default function JoinHouseFormDialog({setHouseMember}) {
     setOpen(false);
   };
 
+  const handleClickOff = () => {
+    setOpen(false);
+  }
+
   return (
     <div>
       <Button className="join-house-button" variant="outlined" onClick={handleClickOpen}>
         Join House
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open} onClose={handleClickOff}>
         <DialogTitle>Join House</DialogTitle>
         <DialogContent>
           <DialogContentText>

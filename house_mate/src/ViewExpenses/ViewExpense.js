@@ -5,7 +5,7 @@ import './ViewExpense.css'
 import { Table, TableCell, TableHead, TableRow , TableBody} from "@mui/material";
 import { GlobalContext } from "../context/GlobalState";
 import { useContext } from "react";
-import houses from "../Objects/Houses.js"; //change to database in Phase 2
+import {houses} from "../Objects/Houses.js"; //change to database in Phase 2
 import { users } from "../Objects/Users.js"; //change to database in Phase 2
 
 

@@ -48,10 +48,73 @@ app.post('/', mongoChecker, async (req, res) => {
     res.send(newUser)
 })
 
+//to get user info for a given user (profile page)
+app.get('/:username', mongoChecker, async (req, res)=>{
+    console.log(req.body)
+    const username = req.params.username
+    console.log(username)
+})
 
-//the forward slash is the endpoint
-app.get('/', (req, res) => res.send('Hello World')) //http request to localhost 5000, should send hello world back
-app.get('/users', (req,res)=> res.send("this is where we send users"))
+//for adding a new house to a user (houses page)
+app.post('/houses/:username', mongoChecker, async (req,res)=>{
+    console.log(req.body)
+    const username = req.params.username
+    console.log(username)
+})
+
+//to get all the houses for one person (houses page)
+app.get('/houses/:username', mongoChecker, async (req,res)=>{
+    console.log(req.body)
+    const username = req.params.username
+    console.log(username)
+})
+
+//to get all the houses (for admin)
+app.get('/houses', mongoChecker, async (req, res)=>{
+    console.log(req.body)
+})
+
+//to get all the users (for admin)
+app.get('users', mongoChecker, async (req, res)=>{
+    console.log(req.body)
+})
+
+//to get all the expenses (view expenses page)
+app.get('/view-expense/:username/:houseId', mongoChecker, async (req,res)=>{
+    console.log(req.body)
+    const username = req.params.username
+    console.log(username)
+})
+
+//to pay off expenses (view expenses page)
+app.post('/view-expense/:username/:houseId', mongoChecker, async (req,res)=>{
+    console.log(req.body)
+    const username = req.params.username
+    console.log(username)
+})
+
+//to get user's roommates for adding an expense (add expense page)
+app.get('/add-expense/:username/:houseId', mongoChecker, async (req,res)=>{
+    console.log(req.body)
+    const username = req.params.username
+    console.log(username)
+})
+
+//to add an expense (add expense page)
+app.post('/add-expense/:username/:houseId', mongoChecker, async (req,res)=>{
+    console.log(req.body)
+    const username = req.params.username
+    console.log(username)
+})
+
+//get house info for a specific house for a specific user (people page)
+app.get('/:username/:houseId', mongoChecker, async (req,res)=>{
+    console.log(req.body)
+    const username = req.params.username
+    const houseId = req.params.houseId
+    console.log(username)
+    console.log(houseId)
+})
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}...`);

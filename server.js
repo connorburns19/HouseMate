@@ -3,6 +3,7 @@ require('dotenv').config()
 const express = require('express');
 const app = express()
 const { mongoose } = require("./db/mongoose");
+const { ObjectId } = require('mongodb')
 
 app.use(express.json());
 app.use(express.urlencoded( {extended: false }));
@@ -56,8 +57,8 @@ app.post('/', mongoChecker, async (req, res) => {
 app.get('/:id', mongoChecker, async (req, res)=>{
     const id = req.params.id
 
-    // Validate id immediately.
-    if (!ObjectID.isValid(id)) {
+    // // Validate id immediately.
+    if (!ObjectId.isValid(id)) {
         res.status(404).send()  // if invalid id, definitely can't find resource, 404.
         return;  // so that we don't run the rest of the handler.
     }

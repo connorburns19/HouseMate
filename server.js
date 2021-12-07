@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express');
 const app = express()
 const { mongoose } = require("./db/mongoose");
@@ -19,9 +21,7 @@ const cors = require('cors')
 if (environment !== 'production') { app.use(cors()) }
 
 app.use(express.static(path.join(__dirname, "/client/build")));
-// function isMongoError(error) { // checks for first error returned by promise rejection if Mongo database suddently disconnects
-//     return typeof error === 'object' && error !== null && error.name === "MongoNetworkError"
-// }
+
 const mongoChecker = (req, res, next) => {
     // check mongoose connection established.
     if (mongoose.connection.readyState != 1) {
@@ -38,25 +38,15 @@ app.post('/', mongoChecker, async (req, res) => {
 
     // Create a new user
     const user = new User({
-        email: req.body.email,
-        password: req.body.password
+        name: req.body.name,
+        password: req.body.password,
+        username: req.body.username,
+        phoneNumber: req.body.phoneNumber
     })
         // Save the user
     const newUser = await user.save()
     res.send(newUser)
 })
-
-// app.get("*", (req, res) => {
-//     // check for page routes that we expect in the frontend to provide correct status code.
-//     const goodPageRoutes = ["/"];
-//     if (!goodPageRoutes.includes(req.url)) {
-//         // if url not in expected page routes, set status to 404.
-//         res.status(404);
-//     }
-
-//     // send index.html
-//     res.sendFile(path.join(__dirname, "/client/build/index.html"));
-// });
 
 
 //the forward slash is the endpoint

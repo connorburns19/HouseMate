@@ -33,6 +33,10 @@ const mongoChecker = (req, res, next) => {
     }   
 }
 
+function isMongoError(error) { // checks for first error returned by promise rejection if Mongo database suddently disconnects
+    return typeof error === 'object' && error !== null && error.name === "MongoNetworkError"
+}
+
 app.post('/', mongoChecker, async (req, res) => {
     console.log(req.body)
 
@@ -49,10 +53,38 @@ app.post('/', mongoChecker, async (req, res) => {
 })
 
 //to get user info for a given user (profile page)
-app.get('/:username', mongoChecker, async (req, res)=>{
-    console.log(req.body)
-    const username = req.params.username
-    console.log(username)
+app.get('/:id', mongoChecker, async (req, res)=>{
+    const id = req.params.id
+
+    // Validate id immediately.
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+        return;  // so that we don't run the rest of the handler.
+    }
+
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        log('Issue with mongoose connection')
+        res.status(500).send('Internal server error')
+        return;
+    }
+
+    // If id valid, findById
+    try {
+        const user = await User.findById(id)
+        if (!user) {
+            res.status(404).send('Resource not found') 
+        } else { 
+            res.send(user)
+        }
+    } catch(error) {
+        log(error)
+        if (isMongoError(error)) { 
+            res.status(500).send('Internal server error')
+        } else {
+            res.status(400).send('Bad Request')
+        }
+    } 
 })
 
 //for adding a new house to a user (houses page)

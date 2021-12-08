@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose')
 const { UserSchema } = require('./users')
+const { ExpenseSchema } = require('./expenses')
 
 // Making a Mongoose model a little differently: a Mongoose Schema
 // Allows us to add additional functionality.
@@ -20,7 +21,8 @@ const HouseSchema = new mongoose.Schema({
 		trim: true,
 		unique: true
 	}, 
-	members: [UserSchema]
+	members: [UserSchema],
+	expenses: [ExpenseSchema]
 
 })
 

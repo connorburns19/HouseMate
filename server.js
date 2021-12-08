@@ -1,22 +1,19 @@
 require('dotenv').config()
+const log = console.log;
 
 const express = require('express');
 const app = express()
 const { mongoose } = require("./db/mongoose");
 const { ObjectId } = require('mongodb');
-
-app.use(express.json());
-app.use(express.urlencoded( {extended: false }));
-
 const { User } = require("./models/users");
 const { House } = require("./models/houses");
 const { Expense } = require("./models/expenses");
+app.use(express.json());
+app.use(express.urlencoded( {extended: false }));
 const port = process.env.PORT || 5000;
-const log = console.log;
+const path = require('path');
 
 console.log(port)
-
-const path = require('path');
 
 var environment = process.env.NODE_ENV || 'production';
 console.log("environment: ", environment)
@@ -571,43 +568,99 @@ app.get('/expense/:userId/:houseId/:owed', mongoChecker, async (req,res)=>{
     
 })
 
-// app.patch('/expense/:userId/:houseId/:expenseId') {
-//     //take the userId out of the payees list for this expense
-// }
+app.patch('/expense/:userId/:houseId/:expenseId', mongoChecker, async (req,res)=> {
+    const uid = req.params.userId
+    const eid = req.params.expenseId
+    //the body of the request will hold the amount and description
 
-// app.delete('/expense/:userId/:houseId/:expenseId') {
-//     //delete this expense
-// }
+    // Validate id immediately.
+    if (!ObjectId.isValid(uid)) {
+        res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+        return;  // so that we don't run the rest of the handler.
+    }
 
-// OLD EXPENSES ROUTES
+    // Validate id immediately.
+    if (!ObjectId.isValid(eid)) {
+        res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+        return;  // so that we don't run the rest of the handler.
+    }
 
-// //to get all the expenses (view expenses page)
-// app.get('/view-expense/:userId/:houseId', mongoChecker, async (req,res)=>{
-//     console.log(req.body)
-//     const userId = req.params.userId
-//     console.log(userId)
-// })
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        console.log('Issue with mongoose connection')
+        res.status(500).send('Internal server error')
+        return;
+    }
 
-// //to pay off expenses (view expenses page) //I think this should be a patch, not a post because we're going to be patching 'payees' array in 'expense'
-// app.post('/view-expense/:userId/:houseId', mongoChecker, async (req,res)=>{
-//     console.log(req.body)
-//     const userId = req.params.userId
-//     console.log(userId)
-// })
+    // If id valid, findById
+	try {
+        const expense = await Expense.findById(eid)
+		if (!expense) {
+			res.status(404).send('Resource not found')
+		} else { 
+            //take the userId out of the payees list for this expense
+            const updated_payees = expense.payees.filter(id => id !== uid)
+            expense.payees = updated_payees
+            const updated_expense = await expense.save()
+            res.send(updated_expense)
+		}
+	} catch(error) {
+		log(error)
+		if (isMongoError(error)) { 
+			res.status(500).send('Internal server error')
+		} else {
+			res.status(400).send('Bad Request')
+		}
+	}
+})
 
-// //to add an expense (add expense page)
-// app.post('/add-expense/:userId/:houseId', mongoChecker, async (req,res)=>{
-//     console.log(req.body)
-//     const userId = req.params.userId
-//     console.log(userId)
-// })
+//delete an expense
+app.delete('/expense/:userId/:houseId/:expenseId', mongoChecker, async (req,res)=> {
+    
+    const hid = req.params.houseId
+    const eid = req.params.expenseId
 
-// //to get user's roommates for adding an expense (add expense page)
-// app.get('/add-expense/:userId/:houseId', mongoChecker, async (req,res)=>{
-//     console.log(req.body)
-//     const userId = req.params.userId
-//     console.log(userId)
-// })
+    // Validate id immediately.
+	if (!ObjectId.isValid(hid)) {
+		res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+		return;  // so that we don't run the rest of the handler.
+	}
+
+    // Validate id immediately.
+	if (!ObjectId.isValid(hid)) {
+		res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+		return;  // so that we don't run the rest of the handler.
+	}
+
+    // check mongoose connection established.
+	if(mongoose.connection.readyState != 1){
+        log('Issue with mongoose connection')
+        res.status(500).send('Internal Server Error')
+        return;
+    }
+
+    // If id valid, findById
+	try {
+		const house = await House.findById(hid)
+        const expense = await Expense.findByIdAndDelete(eid)
+		if (!house || !expense) {
+			res.status(404).send('Resource not found')  // could not find this restaurant
+        }
+        else {
+            const updated_expenses = house.expenses.filter(id => id !== eid)
+            house.expenses = updated_expenses
+            const house_result = await house.save()
+            res.send({deleted: expense, house: house_result})
+        }
+	} catch(error) {
+		log(error)
+		if (isMongoError(error)) { 
+			res.status(500).send('Internal server error')
+		} else {
+			res.status(400).send('Bad Request')
+		}
+	}
+})
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}...`);

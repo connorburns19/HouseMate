@@ -38,7 +38,16 @@ function isMongoError(error) { // checks for first error returned by promise rej
     return typeof error === 'object' && error !== null && error.name === "MongoNetworkError"
 }
 
-app.post('/', mongoChecker, async (req, res) => {
+//to add a new user
+/* Request body expects:
+{
+    "name": <username>,
+    "password": <password>,
+    "phoneNumber": <phoneNumber>,
+    "userName": <username>
+}
+*/
+app.post('/users', mongoChecker, async (req, res) => {
     console.log(req.body)
 
     // Create a new user
@@ -54,8 +63,8 @@ app.post('/', mongoChecker, async (req, res) => {
 })
 
 //to get user info for a given user (profile page)
-app.get('/:id', mongoChecker, async (req, res)=>{
-    const id = req.params.id
+app.get('/users/:userId', mongoChecker, async (req, res)=>{
+    const id = req.params.userId
 
     // // Validate id immediately.
     if (!ObjectId.isValid(id)) {
@@ -65,7 +74,7 @@ app.get('/:id', mongoChecker, async (req, res)=>{
 
     // check mongoose connection established.
     if (mongoose.connection.readyState != 1) {
-        log('Issue with mongoose connection')
+        console.log('Issue with mongoose connection')
         res.status(500).send('Internal server error')
         return;
     }
@@ -88,64 +97,91 @@ app.get('/:id', mongoChecker, async (req, res)=>{
     } 
 })
 
+//for making changes to the user's name and phone number
+/* Request body expects: 
+// { 
+//     "name": <name> 
+//     "phoneNumber": <phone number> 
+} 
+*/ 
+app.patch('/users/:userId', mongoChecker, async (req,res)=>{
+    const userId = req.params.userId
+    console.log(userId)
+})
+
 //for adding a new house to a user (houses page)
-app.post('/houses/:username', mongoChecker, async (req,res)=>{
-    console.log(req.body)
-    const username = req.params.username
-    console.log(username)
+app.post('/houses/:userId', mongoChecker, async (req,res)=>{
+    const userId = req.params.userId
+    console.log(userId)
 })
 
 //to get all the houses for one person (houses page)
-app.get('/houses/:username', mongoChecker, async (req,res)=>{
-    console.log(req.body)
-    const username = req.params.username
-    console.log(username)
+app.get('/houses/:userId', mongoChecker, async (req,res)=>{
+    const userId = req.params.userId
+    console.log(userId)
 })
 
 //to get all the houses (for admin)
-app.get('/houses', mongoChecker, async (req, res)=>{
-    console.log(req.body)
-})
+// app.get('/houses', mongoChecker, async (req, res)=>{
+//     console.log(req.body)
+// })
 
 //to get all the users (for admin)
-app.get('users', mongoChecker, async (req, res)=>{
-    console.log(req.body)
+app.get('/users', mongoChecker, async (req, res)=>{
+    if (mongoose.connection.readyState != 1) {
+        log('Issue with mongoose connection')
+        res.status(500).send('Internal server error')
+        return;
+    } 
+
+    
+    try {
+        const users = await User.find()
+        res.send(users)
+    } catch(error) {
+        log(error)
+        if (isMongoError(error)) { 
+            res.status(500).send('Internal server error')
+        } else {
+            res.status(400).send('Bad Request')
+        }
+    }
 })
 
 //to get all the expenses (view expenses page)
-app.get('/view-expense/:username/:houseId', mongoChecker, async (req,res)=>{
+app.get('/view-expense/:userId/:houseId', mongoChecker, async (req,res)=>{
     console.log(req.body)
-    const username = req.params.username
-    console.log(username)
+    const userId = req.params.userId
+    console.log(userId)
 })
 
-//to pay off expenses (view expenses page)
-app.post('/view-expense/:username/:houseId', mongoChecker, async (req,res)=>{
+//to pay off expenses (view expenses page) //I think this should be a patch, not a post because we're going to be patching 'payees' array in 'expense'
+app.post('/view-expense/:userId/:houseId', mongoChecker, async (req,res)=>{
     console.log(req.body)
-    const username = req.params.username
-    console.log(username)
+    const userId = req.params.userId
+    console.log(userId)
 })
 
 //to get user's roommates for adding an expense (add expense page)
-app.get('/add-expense/:username/:houseId', mongoChecker, async (req,res)=>{
+app.get('/add-expense/:userId/:houseId', mongoChecker, async (req,res)=>{
     console.log(req.body)
-    const username = req.params.username
-    console.log(username)
+    const userId = req.params.userId
+    console.log(userId)
 })
 
 //to add an expense (add expense page)
-app.post('/add-expense/:username/:houseId', mongoChecker, async (req,res)=>{
+app.post('/add-expense/:userId/:houseId', mongoChecker, async (req,res)=>{
     console.log(req.body)
-    const username = req.params.username
-    console.log(username)
+    const userId = req.params.userId
+    console.log(userId)
 })
 
 //get house info for a specific house for a specific user (people page)
-app.get('/:username/:houseId', mongoChecker, async (req,res)=>{
+app.get('/:userId/:houseId', mongoChecker, async (req,res)=>{
     console.log(req.body)
-    const username = req.params.username
+    const userId = req.params.userId
     const houseId = req.params.houseId
-    console.log(username)
+    console.log(userId)
     console.log(houseId)
 })
 

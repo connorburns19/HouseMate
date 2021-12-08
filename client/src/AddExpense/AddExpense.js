@@ -26,7 +26,6 @@ import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 
 function AddExpense() {
-
   const { currHouse, currUser } = useContext(GlobalContext);
   const houseMembers = houses[currHouse].members;
 
@@ -36,7 +35,7 @@ function AddExpense() {
 
   const addExpense = () => {
     addNewExpense(amount, description, payees);
-  }
+  };
 
   return (
     <div className="main-page main-page--dark">
@@ -54,7 +53,8 @@ function AddExpense() {
               focused
             >
               <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
-              <FilledInput onChange={event => setAmount(event.target.value)}
+              <FilledInput
+                onChange={(event) => setAmount(event.target.value)}
                 startAdornment={
                   <InputAdornment position="start">$</InputAdornment>
                 }
@@ -71,7 +71,7 @@ function AddExpense() {
               multiline
               rows={4}
               variant="filled"
-              onChange={event => setDescription(event.target.value)}
+              onChange={(event) => setDescription(event.target.value)}
             />
           </div>
           <div className="add-expense__form">
@@ -88,29 +88,39 @@ function AddExpense() {
               {houseMembers.map((name) => (
                 <React.Fragment key={name}>
                   <FormControlLabel
-                  control={<Checkbox value={name} onChange={event => {
-                    if (event.target.checked){
-                      if(payees.includes(event.target.value)){ return; }
-                      else{setPayees([...payees, event.target.value])}
-                    }else{
-                      const index = [...payees].indexOf(event.target.value);
-                      if(index > -1){
-                        setPayees([...payees].splice(index, 1))
-                      }
-                    } 
+                    control={
+                      <Checkbox
+                        value={name}
+                        onChange={(event) => {
+                          if (event.target.checked) {
+                            if (payees.includes(event.target.value)) {
+                              return;
+                            } else {
+                              setPayees([...payees, event.target.value]);
+                            }
+                          } else {
+                            const index = [...payees].indexOf(
+                              event.target.value
+                            );
+                            if (index > -1) {
+                              setPayees([...payees].splice(index, 1));
+                            }
+                          }
+                        }}
+                        color="secondary"
+                      />
                     }
-                  }
-                 color="secondary" />}
-                  label={
-                    <FormLabel color="secondary" focused>
-                      {name}
-                    </FormLabel>
-                  }
-                />
+                    label={
+                      <FormLabel color="secondary" focused>
+                        {name}
+                      </FormLabel>
+                    }
+                  />
                 </React.Fragment>
               ))}
             </FormGroup>
-            <Button onClick = {addExpense}
+            <Button
+              onClick={addExpense}
               startIcon={<AddIcon />}
               color="secondary"
               variant="contained"
@@ -118,7 +128,6 @@ function AddExpense() {
             >
               Submit
             </Button>
-
           </div>
         </div>
       </ThemeProvider>

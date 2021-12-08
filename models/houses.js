@@ -21,8 +21,8 @@ const HouseSchema = new mongoose.Schema({
 		trim: true,
 		unique: true
 	}, 
-	members: [UserSchema],
-	expenses: [ExpenseSchema]
+	members: [String], // userIDs
+	expenses: [String] // expenseIDs
 
 })
 

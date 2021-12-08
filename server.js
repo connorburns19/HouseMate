@@ -26,6 +26,8 @@ if (environment !== 'production') { app.use(cors()) }
 
 app.use(express.static(path.join(__dirname, "/client/build")));
 
+// *** HELPER FUNCTIONS *** //
+
 const mongoChecker = (req, res, next) => {
     // check mongoose connection established.
     if (mongoose.connection.readyState != 1) {
@@ -40,6 +42,8 @@ const mongoChecker = (req, res, next) => {
 function isMongoError(error) { // checks for first error returned by promise rejection if Mongo database suddently disconnects
     return typeof error === 'object' && error !== null && error.name === "MongoNetworkError"
 }
+
+// *** USER ROUTES *** //
 
 //to add a new user
 /* Request body expects:
@@ -124,6 +128,36 @@ app.get('/users', mongoChecker, async (req, res)=>{
     }
 })
 
+//route for getting the users ID with the username and password
+app.get("/users/login", mongoChecker, async (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+  
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+      console.log("Issue with mongoose connection");
+      res.status(500).send("Internal server error");
+      return;
+    }
+  
+    // If id valid, findById
+    try {
+      const user = await User.findByUsernamePassword(username, password);
+      if (!user) {
+        res.status(404).send("Resource not found");
+      } else {
+        res.send(user.id);
+      }
+    } catch (error) {
+      console.log(error);
+      if (isMongoError(error)) {
+        res.status(500).send("Internal server error");
+      } else {
+        res.status(400).send("Bad Request");
+      }
+    }
+});
+
 //to get user info for a given user (profile page)
 app.get('/users/:userId', mongoChecker, async (req, res)=>{
     const id = req.params.userId
@@ -207,6 +241,8 @@ app.patch('/users/:userId', mongoChecker, async (req,res)=>{
 
 })
 
+// *** HOUSE ROUTES *** //
+
 //for adding a new house (admin)
 app.post('/houses', mongoChecker, async (req,res)=>{
     console.log(req.body)
@@ -214,10 +250,9 @@ app.post('/houses', mongoChecker, async (req,res)=>{
     // Create a new user
     const house = new House({
         address: req.body.address,
-        imageLink: req.body.imageLink,
-        members: []
+        imageLink: req.body.imageLink
     })
-        // Save the user
+    // Save the house
     const newHouse = await house.save()
     res.send(newHouse)
 })
@@ -379,7 +414,6 @@ app.delete('/users/house', mongoChecker, async(req, res) =>{
 //to get all the houses for one person (houses page)
 app.get('/houses/:userId', mongoChecker, async (req,res)=>{
     const id = req.params.userId
-    console.log(id)
 
     // // Validate id immediately.
     if (!ObjectId.isValid(id)) {
@@ -400,7 +434,13 @@ app.get('/houses/:userId', mongoChecker, async (req,res)=>{
         if (!user) {
             res.status(404).send('Resource not found') 
         } else { 
-            res.send(user.houses)
+            var userHouses = []
+            console.log(user.houses)
+            for (var i=0; i<user.houses.length; i++){
+                const houses = await House.findById(user.houses[i])
+                userHouses.push(houses)
+            }
+            res.send(userHouses)
         }
     } catch(error) {
         log(error)
@@ -412,23 +452,122 @@ app.get('/houses/:userId', mongoChecker, async (req,res)=>{
     } 
 })
 
-// NEW EXPENSES ROUTES
+// *** EXPENSE ROUTES *** //
 
-// app.get('/expense/:userId/:houseId/:owed') {
-//     //get all expenses associated with this user account on this house
-//     //if owed
-//     //filter for the expenses where userId is in the payees list
-//     //else
-//     //filter for the expenses where userId is the creator
-// }
+app.post('/expense/:userId/:houseId', mongoChecker, async (req,res)=>{
+    //post a new expense
+    console.log(req.body)
+    const creatorId = req.params.userId
+    const houseId = req.params.houseId
+    //the body of the request will hold the amount and description
 
-// app.post('/expense/:userId/:houseId') {
-//     //post a new expense
-//     //set userId as the creator
-//     //add this expense to the expenses array in houseId
-//     //set payees list as the payees list in the expense object
-//     //save
-// }
+    // Validate id immediately.
+    if (!ObjectId.isValid(creatorId)) {
+        res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+        return;  // so that we don't run the rest of the handler.
+    }
+
+    // Validate id immediately.
+    if (!ObjectId.isValid(houseId)) {
+        res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+        return;  // so that we don't run the rest of the handler.
+    }
+
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        console.log('Issue with mongoose connection')
+        res.status(500).send('Internal server error')
+        return;
+    }
+
+    // If id valid, findById
+	try {
+        const expense = new Expense({
+            amount: req.body.amount,
+            description: req.body.description,
+            creator: creatorId //set userId as the creator
+        })
+        const newExpense = await expense.save()
+        const house = await House.findById(houseId)
+
+		if (!house) {
+			res.status(404).send('Resource not found')
+		} else { 
+            house.expenses.push(newExpense.id) //store the expense id in the houses expense list
+            const hresult = await house.save()
+            res.send({ expense: newExpense, house: hresult })
+		}
+	} catch(error) {
+		log(error)
+		if (isMongoError(error)) { 
+			res.status(500).send('Internal server error')
+		} else {
+			res.status(400).send('Bad Request')
+		}
+	}
+})
+
+app.get('/expense/:userId/:houseId/:owed', mongoChecker, async (req,res)=>{
+    //get all expenses associated with this user account on this house
+    const uid = req.params.userId
+    const houseId = req.params.houseId
+    const owed = (req.params.owed === 'true') // boolean
+    //the body of the request will hold the amount and description
+
+    // Validate id immediately.
+    if (!ObjectId.isValid(uid)) {
+        res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+        return;  // so that we don't run the rest of the handler.
+    }
+
+    // Validate id immediately.
+    if (!ObjectId.isValid(houseId)) {
+        res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+        return;  // so that we don't run the rest of the handler.
+    }
+
+    // check mongoose connection established.
+    if (mongoose.connection.readyState != 1) {
+        console.log('Issue with mongoose connection')
+        res.status(500).send('Internal server error')
+        return;
+    }
+
+    // If id valid, findById
+	try {
+        //start by getting all expenses associated with this house:
+        const house = await House.findById(houseId)
+		if (!house) {
+			res.status(404).send('Resource not found')
+		} else { 
+            var userOwed = []
+            var userPayee = []
+            for (var i=0; i<house.expenses.length; i++){
+                const expense = await Expense.findById(house.expenses[i])
+                if (expense.creator === uid){
+                    userOwed.push(expense)
+                }
+                if (expense.payees.includes(uid)){
+                    userPayee.push(expense)
+                }
+            }
+            if (owed) {
+                res.send(userOwed)
+            }
+            else {
+                res.send(userPayee)
+            }
+		}
+	} catch(error) {
+		log(error)
+		if (isMongoError(error)) { 
+			res.status(500).send('Internal server error')
+		} else {
+			res.status(400).send('Bad Request')
+		}
+	}
+    
+})
 
 // app.patch('/expense/:userId/:houseId/:expenseId') {
 //     //take the userId out of the payees list for this expense

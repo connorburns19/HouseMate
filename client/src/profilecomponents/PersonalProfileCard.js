@@ -29,9 +29,23 @@ const ProfileCard = (props) => {
     });
   }
 
+  async function updateProfile() {
+    const request = {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: name, phoneNumber: number }),
+    };
+    const res = await fetch("http://localhost:5000/users/");
+  }
+
   function handleclick(show, show2) {
-    setDisplayName(tempname);
-    setPhoneNumber(tempnumber);
+    if (tempname !== "") {
+      setDisplayName(tempname);
+    }
+    if (tempnumber !== "") {
+      console.log(tempnumber);
+      setPhoneNumber(tempnumber);
+    }
     setImage(tempimage);
     console.log(CurrUser());
     if (show == true) {

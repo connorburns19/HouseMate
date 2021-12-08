@@ -108,6 +108,7 @@ app.get('/users/:userId', mongoChecker, async (req, res)=>{
 app.patch('/users/:userId', mongoChecker, async (req,res)=>{
     const userId = req.params.userId
     console.log(userId)
+})
 
 //for adding a new house (admin)
 app.post('/houses', mongoChecker, async (req,res)=>{

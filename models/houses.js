@@ -18,8 +18,7 @@ const HouseSchema = new mongoose.Schema({
 		type: String,
 		required:true,
 		minlength:1,
-		trim: true,
-		unique: true
+		trim: true
 	}, 
 	members: [String], // userIDs
 	expenses: [String] // expenseIDs

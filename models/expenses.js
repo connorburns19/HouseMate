@@ -19,8 +19,7 @@ const ExpenseSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 1,
-    trim: true,
-    unique: true,
+    trim: true
   },
   payees: [String], // userIDs
   creator: {

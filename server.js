@@ -454,6 +454,7 @@ app.get('/houses/:userId', mongoChecker, async (req,res)=>{
 
 // *** EXPENSE ROUTES *** //
 
+//create a new expense
 app.post('/expense/:userId/:houseId', mongoChecker, async (req,res)=>{
     //post a new expense
     console.log(req.body)
@@ -485,7 +486,8 @@ app.post('/expense/:userId/:houseId', mongoChecker, async (req,res)=>{
         const expense = new Expense({
             amount: req.body.amount,
             description: req.body.description,
-            creator: creatorId //set userId as the creator
+            creator: creatorId, //set userId as the creator
+            payees: req.body.payees //array of user ids
         })
         const newExpense = await expense.save()
         const house = await House.findById(houseId)

@@ -13,7 +13,6 @@ import NavBar from "../NavBar/NavBar";
 console.log(getSessionCookie());
 const session = getSessionCookie();
 
-
 function HousePage({ user }) {
   const { currUser } = React.useContext(GlobalContext);
   const { currHouse } = React.useContext(GlobalContext);

@@ -16,11 +16,13 @@ import Login from "./login-components/Login/Login.js";
 import { getSessionCookie } from "./session";
 import { GlobalContext } from "./context/GlobalState";
 import { useContext } from "react";
+import Logout from "./logout";
+import { createBrowserHistory } from "history";
 console.log(getSessionCookie());
 const session = getSessionCookie();
 
 ///////
-if (session === "none") {
+if (session === "none" || session === undefined) {
   ReactDOM.render(
     <GlobalProvider>
       <React.StrictMode>
@@ -33,6 +35,7 @@ if (session === "none") {
             <Route path="/houses" element={<HousePage />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/house-rules" element={<HouseRules />} />
+            <Route path="/logout" element={<Logout />} />
           </Routes>
         </BrowserRouter>
       </React.StrictMode>
@@ -55,6 +58,30 @@ if (session !== "none" && session.hid == null) {
             <Route path="/houses" element={<HousePage />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/house-rules" element={<HouseRules />} />
+            <Route path="/logout" element={<Logout />} />
+          </Routes>
+        </BrowserRouter>
+      </React.StrictMode>
+    </GlobalProvider>,
+    document.getElementById("root")
+  );
+}
+if (session !== "none" && session.hid != null) {
+  // setUser(session.uid);
+
+  ReactDOM.render(
+    <GlobalProvider>
+      <React.StrictMode>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/*" element={<App />} />
+            <Route path="/home" element={<App />} />
+            <Route path="/view-expense" element={<ViewExpense />} />
+            <Route path="/add-expense" element={<AddExpense />} />
+            <Route path="/houses" element={<HousePage />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/house-rules" element={<HouseRules />} />
+            <Route path="/logout" element={<Logout />} />
           </Routes>
         </BrowserRouter>
       </React.StrictMode>

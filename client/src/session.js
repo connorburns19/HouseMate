@@ -10,7 +10,10 @@ export const setSessionCookie = (session) => {
 export const getSessionCookie = () => {
   const sessionCookie = Cookies.get("session");
 
-  if (sessionCookie === undefined) {
+  if (
+    sessionCookie === undefined ||
+    sessionCookie === { uid: null, hid: null }
+  ) {
     return "none";
   } else {
     return JSON.parse(sessionCookie);

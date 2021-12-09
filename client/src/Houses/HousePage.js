@@ -11,8 +11,11 @@ import NewHouseFormDialog from "./NewHouseForm";
 import JoinHouseFormDialog from "./JoinHouseForm";
 import { users } from "../Objects/Users";
 import { GlobalContext } from "../context/GlobalState";
+import { getSessionCookie } from "../session";
 import axios from "axios";
-
+console.log(getSessionCookie());
+const session = getSessionCookie();
+// import { getSessionCookie } from "../../session";
 function HousePage({ user }) {
   const { currUser } = React.useContext(GlobalContext);
   const { currHouse } = React.useContext(GlobalContext);
@@ -39,7 +42,11 @@ function HousePage({ user }) {
   };
 
   React.useEffect(async () => {
-    await displayUserHouses(currUser);
+    if (currUser !== null) {
+      await displayUserHouses(currUser);
+    } else {
+      await displayUserHouses(session.uid);
+    }
   }, [houseList]);
 
   if (currHouse == null && currUser != "admin") {

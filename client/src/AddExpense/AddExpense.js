@@ -80,15 +80,17 @@ function AddExpense() {
   }, [])
 
   const addExpense = () => {
-    createExpense(amount, description);
+    createExpense(amount, description, houseMemberIds);
   };
 
-  const createExpense = async (amount, description) =>{
+  const createExpense = async (amount, description, payees) =>{
+    console.log(houseMemberIds)
+    console.log(payees)
     try{
       const res = await axios({
         method:"post",
         url:`http://localhost:5000/expense/${currUser}/${currHouse}`,
-        data: { amount: amount, description: description, creatorId:currUser, payees:houseMemberIds },
+        data: { amount: amount, description: description, creatorId:currUser, payees:payees },
         headers: {
           "Access-Control-Allow-Headers":
             "Origin, X-Requested-With, Content-Type, Accept",

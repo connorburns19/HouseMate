@@ -6,32 +6,41 @@ import NavBar from "../NavBar/NavBar";
 import AdminNavBar from "../NavBar/AdminNavBar";
 import Stack from "@mui/material/Stack";
 import HouseCard from "./HouseCard";
-import {houses} from '../Objects/Houses'; //change to database in Phase 2
+import { houses } from "../Objects/Houses";
 import NewHouseFormDialog from "./NewHouseForm";
 import JoinHouseFormDialog from "./JoinHouseForm";
 import { users } from "../Objects/Users";
 import { GlobalContext } from "../context/GlobalState";
-
-function displayUserHouses(user) {
-  const houseCardList = [];
-  for (let i = 0; i < users[user].houses.length; i++) {
-    const houseInd = users[user].houses[i];
-    houseCardList.push(
-      <HouseCard
-        address={houses[houseInd].address}
-        imagelink={houses[houseInd].imagelink}
-        id={houseInd}
-      />
-    );
-  }
-  return houseCardList;
-}
+import axios from "axios";
 
 function HousePage({ user }) {
-  const [houseMember, addMemberToHouse] = React.useState();
-  const [houseCreate, createHouse] = React.useState();
   const { currUser } = React.useContext(GlobalContext);
   const { currHouse } = React.useContext(GlobalContext);
+
+  const [houseMember, addMemberToHouse] = React.useState();
+  const [houseCreate, createHouse] = React.useState();
+  const [houseList, setHouseList] = React.useState([]);
+  const displayUserHouses = async (userid) => {
+    try {
+      const res = await axios({
+        method: "get",
+        url: `http://localhost:5000/houses/${userid}`,
+        headers: {
+          "Access-Control-Allow-Headers":
+            "Origin, X-Requested-With, Content-Type, Accept",
+        },
+      });
+
+      setHouseList(res.data);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  React.useEffect(async () => {
+    await displayUserHouses(currUser);
+  }, [houseList]);
 
   if (currHouse == null && currUser != "admin") {
     return (
@@ -40,32 +49,25 @@ function HousePage({ user }) {
           <div className="house-list">
             <Stack className="house-stack" spacing={2}>
               <JoinHouseFormDialog setHouseMember={addMemberToHouse} />
-              <NewHouseFormDialog setHouseMember={createHouse}/>
+              <NewHouseFormDialog setHouseMember={createHouse} />
               <h2 className="house-title">Your Houses</h2>
-              {displayUserHouses(currUser)}
+              {houseList.length > 0 &&
+                houseList.map((item, index) => {
+                  return (
+                    <HouseCard
+                      address={item.address}
+                      imagelink={item.imageLink}
+                      id={item._id}
+                      key={index}
+                    />
+                  );
+                })}
             </Stack>
           </div>
         </ThemeProvider>
       </div>
     );
   }
-
-  return (
-    <div className="house-page house-page--dark">
-      <ThemeProvider theme={theme}>
-        {currUser === "admin" ? <AdminNavBar /> : <NavBar />}
-
-        <div className="house-list">
-          <Stack className="house-stack" spacing={2}>
-            <JoinHouseFormDialog setHouseMember={addMemberToHouse} />
-            <NewHouseFormDialog setHouseMember={createHouse}/>
-            <h2 className="house-title">Your Houses</h2>
-            {displayUserHouses(currUser)}
-          </Stack>
-        </div>
-      </ThemeProvider>
-    </div>
-  );
 }
 
 export default HousePage;

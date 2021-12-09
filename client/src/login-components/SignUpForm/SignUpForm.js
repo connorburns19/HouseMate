@@ -7,6 +7,7 @@ import { GlobalContext } from "../../context/GlobalState";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { setSessionCookie, getSessionCookie } from "../../session";
 
 function SignUpForm() {
   const [name, setName] = useState("");
@@ -37,8 +38,9 @@ function SignUpForm() {
       },
     }).then(function (response) {
       setUser(response.data._id);
+      setSessionCookie({ uid: response.data._id, hid: null });
       //add error check
-      console.log(response.data);
+
       navigate("/houses");
     });
   };

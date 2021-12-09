@@ -20,7 +20,7 @@ console.log(getSessionCookie());
 const session = getSessionCookie();
 
 ///////
-if (session === {}) {
+if (session === "none") {
   ReactDOM.render(
     <GlobalProvider>
       <React.StrictMode>
@@ -40,7 +40,7 @@ if (session === {}) {
     document.getElementById("root")
   );
 }
-if (session.hid === null) {
+if (session !== "none" && session.hid == null) {
   // setUser(session.uid);
 
   ReactDOM.render(

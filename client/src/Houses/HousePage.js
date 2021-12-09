@@ -9,9 +9,10 @@ import JoinHouseFormDialog from "./JoinHouseForm";
 import { GlobalContext } from "../context/GlobalState";
 import { getSessionCookie } from "../session";
 import axios from "axios";
+import NavBar from "../NavBar/NavBar";
 console.log(getSessionCookie());
 const session = getSessionCookie();
-import NavBar from "../NavBar/NavBar";
+
 
 function HousePage({ user }) {
   const { currUser } = React.useContext(GlobalContext);

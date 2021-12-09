@@ -44,34 +44,33 @@ function HousePage({ user }) {
     } else {
       await displayUserHouses(session.uid);
     }
-  }, [houseList]);
   }, [houseList, currHouse]);
 
-    return (
-      <div className="house-page house-page--dark">
-        <ThemeProvider theme={theme}>
-          {currHouse === null ? <></> : <NavBar/> }
-          <div className="house-list">
-            <Stack className="house-stack" spacing={2}>
-              <JoinHouseFormDialog setHouseMember={addMemberToHouse} />
-              <NewHouseFormDialog setHouseMember={createHouse} />
-              <h2 className="house-title">Your Houses</h2>
-              {houseList.length > 0 &&
-                houseList.map((item, index) => {
-                  return (
-                    <HouseCard
-                      address={item.address}
-                      imagelink={item.imageLink}
-                      id={item._id}
-                      key={index}
-                    />
-                  );
-                })}
-            </Stack>
-          </div>
-        </ThemeProvider>
-      </div>
-    );
+  return (
+    <div className="house-page house-page--dark">
+      <ThemeProvider theme={theme}>
+        {currHouse === null ? <></> : <NavBar />}
+        <div className="house-list">
+          <Stack className="house-stack" spacing={2}>
+            <JoinHouseFormDialog setHouseMember={addMemberToHouse} />
+            <NewHouseFormDialog setHouseMember={createHouse} />
+            <h2 className="house-title">Your Houses</h2>
+            {houseList.length > 0 &&
+              houseList.map((item, index) => {
+                return (
+                  <HouseCard
+                    address={item.address}
+                    imagelink={item.imageLink}
+                    id={item._id}
+                    key={index}
+                  />
+                );
+              })}
+          </Stack>
+        </div>
+      </ThemeProvider>
+    </div>
+  );
 }
 
 export default HousePage;

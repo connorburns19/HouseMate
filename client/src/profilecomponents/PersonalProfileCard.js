@@ -12,8 +12,7 @@ import { useContext } from "react";
 
 const ProfileCard = (props) => {
   const { currUser } = useContext(GlobalContext);
-  const [name, setDisplayName] = useState(users[currUser].name);
-  const [number, setPhoneNumber] = useState(users[currUser].phone);
+  
 
   const [tempname, setTempName] = useState("");
   const [tempnumber, setTempPhoneNumber] = useState("");
@@ -23,20 +22,17 @@ const ProfileCard = (props) => {
   const [tempimage, setTempImage] = useState(props.image);
   const [image, setImage] = useState(props.image);
 
-  function handleOnChange(value) {
-    this.setState({
-      phone: value,
-    });
-  }
+  console.log(props.display_name)
+  console.log(props.number)
+  const [name, setDisplayName] = useState(props.display_name);
+  const [number, setPhoneNumber] = useState(props.number);
+  console.log(name)
+  console.log(number)
 
-  async function updateProfile() {
-    const request = {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: name, phoneNumber: number }),
-    };
-    const res = await fetch("http://localhost:5000/users/");
-  }
+  React.useEffect(async () =>{
+    setDisplayName(props.display_name)
+    setPhoneNumber(props.number)
+  }, [])
 
   function handleclick(show, show2) {
     if (tempname !== "") {

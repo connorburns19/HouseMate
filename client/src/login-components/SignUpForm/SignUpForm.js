@@ -28,21 +28,30 @@ function SignUpForm() {
   };
 
   const createUser = async (formdetails) => {
-    axios({
-      method: "post",
-      url: "http://localhost:5000/users",
-      data: formdetails,
-      headers: {
-        "Access-Control-Allow-Headers":
-          "Origin, X-Requested-With, Content-Type, Accept",
-      },
-    }).then(function (response) {
-      setUser(response.data._id);
-      setSessionCookie({ uid: response.data._id, hid: null });
-      //add error check
+    if (
+      formdetails.name.length > 0 &&
+      formdetails.username.length > 0 &&
+      formdetails.password.length > 0 &&
+      formdetails.phoneNumber.length > 4
+    ) {
+      axios({
+        method: "post",
+        url: "http://localhost:5000/users",
+        data: formdetails,
+        headers: {
+          "Access-Control-Allow-Headers":
+            "Origin, X-Requested-With, Content-Type, Accept",
+        },
+      }).then(function (response) {
+        setUser(response.data._id);
+        setSessionCookie({ uid: response.data._id, hid: null });
+        //add error check
 
-      navigate("/houses");
-    });
+        navigate("/houses");
+      });
+    } else {
+      console.log("wrong schema");
+    }
   };
   return (
     <form>

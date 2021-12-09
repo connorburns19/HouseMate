@@ -8,6 +8,7 @@ import NewHouseFormDialog from "./NewHouseForm";
 import JoinHouseFormDialog from "./JoinHouseForm";
 import { GlobalContext } from "../context/GlobalState";
 import axios from "axios";
+import NavBar from "../NavBar/NavBar";
 
 function HousePage({ user }) {
   const { currUser } = React.useContext(GlobalContext);
@@ -36,12 +37,12 @@ function HousePage({ user }) {
 
   React.useEffect(async () => {
     await displayUserHouses(currUser);
-  }, [houseList]);
+  }, [houseList, currHouse]);
 
-  if (currHouse == null && currUser != "admin") {
     return (
       <div className="house-page house-page--dark">
         <ThemeProvider theme={theme}>
+          {currHouse === null ? <></> : <NavBar/> }
           <div className="house-list">
             <Stack className="house-stack" spacing={2}>
               <JoinHouseFormDialog setHouseMember={addMemberToHouse} />
@@ -63,7 +64,6 @@ function HousePage({ user }) {
         </ThemeProvider>
       </div>
     );
-  }
 }
 
 export default HousePage;

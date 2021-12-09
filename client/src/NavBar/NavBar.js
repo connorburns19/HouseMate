@@ -19,17 +19,16 @@ import HomeIcon from "@mui/icons-material/Home";
 import OtherHousesIcon from "@mui/icons-material/OtherHouses";
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
 import { Link } from "react-router-dom";
-import CurrUser from "../Objects/CurrUser";
 import { GlobalContext } from '../context/GlobalState';
-import {houses} from "../Objects/Houses";
+import axios from "axios";
 
 
 function NavBar() {
   const { currHouse } = React.useContext(GlobalContext);
-
   const [state, setState] = React.useState({
     visible: false,
   });
+  const [houseAddress, getHouseAddress] = React.useState()
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -40,6 +39,32 @@ function NavBar() {
     }
     setState({ ...state, [anchor]: open });
   };
+
+  const showAddress = async () => {
+    console.log(currHouse)
+    try{
+      const res = await axios({
+        method:"get",
+        url: `http://localhost:5000/houses/info/${currHouse}`,
+        headers: {
+          "Access-Control-Allow-Headers":
+            "Origin, X-Requested-With, Content-Type, Accept",
+        },
+        
+      })
+      getHouseAddress(res.data.address)
+      return res.data.address
+    }catch(error){
+      
+      console.log(error)
+    }
+  }
+
+  React.useEffect(async () => {
+    await showAddress(); 
+  }, [houseAddress, currHouse])
+
+
 
   const navList = [
     {
@@ -132,9 +157,7 @@ function NavBar() {
           </React.Fragment>
         ))}
         <h1 className="nav-bar__address-text" style={{ color: "white" }}>
-          {currHouse || currHouse === 0
-            ? houses[parseInt(currHouse)].address
-            : ""}
+          {houseAddress}
         </h1>
       </ToolBar>
     </AppBar>

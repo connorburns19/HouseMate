@@ -22,13 +22,59 @@ import axios from "axios";
 import { getSessionCookie, setSessionCookie } from "./session";
 import * as Cookies from "js-cookie";
 import { Cookie } from "express-session";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./Themes/theme.js";
 
-function Logout({ history }) {
+import { useContext } from "react";
+
+function Logout() {
+  const { switchHouse } = useContext(GlobalContext);
+  const { setUser } = useContext(GlobalContext);
+  const { currHouse } = useContext(GlobalContext);
+  const { currUser } = useContext(GlobalContext);
+  if (currHouse != null) {
+    switchHouse(null);
+  }
+  if (currUser != null) {
+    setUser(null);
+  }
+
   Cookies.remove("session");
-  const route = () => {
-    history.push("/login");
-  };
-  return route;
+
+  //   const backtoLogin = () => {
+  //     navigate("/*");
+  //   };
+
+  //   return (
+  //     <div className="landing-page--dark">
+  //       <ThemeProvider theme={theme}>
+  //         <Button variant="contained" onClick={backtoLogin}>
+  //           Back to Login
+  //         </Button>
+  //       </ThemeProvider>
+  //     </div>
+  //   );
+  return (
+    <div className="landing-page landing-page--dark">
+      <ThemeProvider theme={theme}>
+        <div className="landing-page__flex-wrapper">
+          <div className="landing-page__button-container">
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <Button
+                color="primary"
+                variant="contained"
+                className="landing-page__button button--color-blue"
+              >
+                <h1>Back to Login</h1>
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </ThemeProvider>
+    </div>
+  );
 }
 
 export default Logout;

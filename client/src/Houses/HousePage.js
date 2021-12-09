@@ -2,14 +2,10 @@ import "./HousePage.css";
 import * as React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../Themes/theme.js";
-import NavBar from "../NavBar/NavBar";
-import AdminNavBar from "../NavBar/AdminNavBar";
 import Stack from "@mui/material/Stack";
 import HouseCard from "./HouseCard";
-import { houses } from "../Objects/Houses";
 import NewHouseFormDialog from "./NewHouseForm";
 import JoinHouseFormDialog from "./JoinHouseForm";
-import { users } from "../Objects/Users";
 import { GlobalContext } from "../context/GlobalState";
 import axios from "axios";
 

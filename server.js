@@ -431,7 +431,6 @@ app.get("/houses/:userId", mongoChecker, async (req, res) => {
       res.status(404).send("Resource not found");
     } else {
       var userHouses = [];
-      console.log(user.houses);
       for (var i = 0; i < user.houses.length; i++) {
         const houses = await House.findById(user.houses[i]);
         userHouses.push(houses);

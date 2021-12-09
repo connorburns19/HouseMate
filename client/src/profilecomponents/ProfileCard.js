@@ -17,10 +17,10 @@ const ProfileCard = (props) => {
     );
   }
 
-  const [name, setDisplayName] = useState(users[props.username].name);
-  const [number, setPhoneNumber] = useState(users[props.username].phone);
+  const [name, setDisplayName] = useState(props.display_name);
+  const [number, setPhoneNumber] = useState(props.number);
   const [username, setUName] = useState(props.username);
-  const [houses, setHouseList] = useState(users[props.username].houses);
+  const [houses, setHouseList] = useState(props.houses);
   const [img, setImage] = useState(props.image);
   if (props.admin === "admin") {
     return (

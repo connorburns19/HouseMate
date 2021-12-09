@@ -10,6 +10,7 @@ import ProfileCard from "./profilecomponents/ProfileCard";
 import { users } from "./Objects/Users"; //change to database in Phase 2
 import { GlobalContext } from "./context/GlobalState";
 import { useContext } from "react";
+import axios from "axios";
 
 //change to database in Phase 2
 let image =
@@ -17,6 +18,42 @@ let image =
 
 function Profile() {
   const { currUser } = useContext(GlobalContext);
+  
+  
+
+  const [name, setName] = React.useState();
+  const [username, setUsername] = React.useState("");
+  const [phoneNumber, setPhoneNumber] = React.useState();
+  const [houses, setHouses] = React.useState([]);
+  
+  const getUserInfo = async (userId) => {
+    try{
+      const res = await axios({
+        method:"get",
+        url: `http://localhost:5000/users/${userId}`,
+        headers: {
+          "Access-Control-Allow-Headers":
+            "Origin, X-Requested-With, Content-Type, Accept",
+        },
+        
+      })
+      console.log(res.data.name)
+      setName(res.data.name)
+      setUsername(res.data.username)
+      console.log(res.data.phoneNumber)
+      setPhoneNumber(res.data.phoneNumber)
+      setHouses(res.data.houses)
+      return res.data
+    }catch(error){
+      
+      console.log(error)
+    }
+  }
+
+  React.useEffect(async () => {
+    await getUserInfo(currUser); 
+  }, [])
+  
   return (
     <div className="profile-page profile-page--dark">
       <ThemeProvider theme={theme}>
@@ -24,20 +61,21 @@ function Profile() {
 
         <div className="profile-page__flex-wrapper">
           {currUser === "admin" ? (
-            <ProfileCard
+            
+            <ProfileCard 
               image={image}
-              number={users[currUser].phone}
-              display_name={users[currUser].name}
-              username={currUser}
-              house_list={users[currUser].houses}
+              number={phoneNumber}
+              display_name={name}
+              username={username}
+              house_list={houses}
             />
           ) : (
             <PersonalProfileCard
               image={image}
-              number={users[currUser].phone}
-              display_name={users[currUser].name}
-              username={currUser}
-              house_list={users[currUser].houses}
+              number={phoneNumber}
+              display_name={name}
+              username={username}
+              house_list={houses}
             />
           )}
         </div>

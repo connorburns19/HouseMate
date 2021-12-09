@@ -10,6 +10,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {joinHouse} from '../Objects/Users';
 import { GlobalContext } from '../context/GlobalState';
+import axios from "axios";
+
 
 export default function JoinHouseFormDialog({setHouseMember}) {
   const [open, setOpen] = React.useState(false);
@@ -22,12 +24,31 @@ export default function JoinHouseFormDialog({setHouseMember}) {
 
   const handleClose = () => {
     setHouseMember(false); //make sure that one peice of the state was changing
-    joinHouse(currUser, parseInt(houseID));
+    submitValue(currUser);
     setOpen(false);
   };
 
   const handleClickOff = () => {
     setOpen(false);
+  }
+
+  const submitValue = (userid) => {
+    addUserToHouse(userid);
+  }
+
+  const addUserToHouse = async (userid) =>{
+  try{
+    const res = await axios({
+      method: "post",
+      url: `http://localhost:5000/houses/${userid}`,
+      data: { id:houseID },
+      headers: {
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+      }
+    });
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (

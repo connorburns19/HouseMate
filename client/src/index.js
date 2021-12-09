@@ -1,3 +1,5 @@
+// Followed https://www.jmfurlott.com/handling-user-session-react-context/ for sessions
+
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
@@ -9,24 +11,26 @@ import HousePage from "./Houses/HousePage";
 import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
 import Profile from "./Profile";
 import HouseRules from "./HouseRules/HouseRules";
-import { GlobalProvider } from './context/GlobalState';
-import Login from './login-components/Login/Login.js'
+import { GlobalProvider } from "./context/GlobalState";
+import Login from "./login-components/Login/Login.js";
+
+///////
 
 ReactDOM.render(
   <GlobalProvider>
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/*" element={<Login />} />
-        <Route path="/home" element={<App />} />
-        <Route path="/view-expense" element={<ViewExpense />} />
-        <Route path="/add-expense" element={<AddExpense />} />
-        <Route path="/houses" element={<HousePage />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/house-rules" element={<HouseRules />} />
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>
+    <React.StrictMode>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/*" element={<Login />} />
+          <Route path="/home" element={<App />} />
+          <Route path="/view-expense" element={<ViewExpense />} />
+          <Route path="/add-expense" element={<AddExpense />} />
+          <Route path="/houses" element={<HousePage />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/house-rules" element={<HouseRules />} />
+        </Routes>
+      </BrowserRouter>
+    </React.StrictMode>
   </GlobalProvider>,
   document.getElementById("root")
 );

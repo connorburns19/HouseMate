@@ -13,27 +13,55 @@ import Profile from "./Profile";
 import HouseRules from "./HouseRules/HouseRules";
 import { GlobalProvider } from "./context/GlobalState";
 import Login from "./login-components/Login/Login.js";
+import { getSessionCookie } from "./session";
+import { GlobalContext } from "./context/GlobalState";
+import { useContext } from "react";
+console.log(getSessionCookie());
+const session = getSessionCookie();
 
 ///////
+if (session === "none") {
+  ReactDOM.render(
+    <GlobalProvider>
+      <React.StrictMode>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/*" element={<Login />} />
+            <Route path="/home" element={<App />} />
+            <Route path="/view-expense" element={<ViewExpense />} />
+            <Route path="/add-expense" element={<AddExpense />} />
+            <Route path="/houses" element={<HousePage />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/house-rules" element={<HouseRules />} />
+          </Routes>
+        </BrowserRouter>
+      </React.StrictMode>
+    </GlobalProvider>,
+    document.getElementById("root")
+  );
+}
+if (session !== "none" && session.hid == null) {
+  // setUser(session.uid);
 
-ReactDOM.render(
-  <GlobalProvider>
-    <React.StrictMode>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/*" element={<Login />} />
-          <Route path="/home" element={<App />} />
-          <Route path="/view-expense" element={<ViewExpense />} />
-          <Route path="/add-expense" element={<AddExpense />} />
-          <Route path="/houses" element={<HousePage />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/house-rules" element={<HouseRules />} />
-        </Routes>
-      </BrowserRouter>
-    </React.StrictMode>
-  </GlobalProvider>,
-  document.getElementById("root")
-);
+  ReactDOM.render(
+    <GlobalProvider>
+      <React.StrictMode>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/*" element={<HousePage />} />
+            <Route path="/home" element={<App />} />
+            <Route path="/view-expense" element={<ViewExpense />} />
+            <Route path="/add-expense" element={<AddExpense />} />
+            <Route path="/houses" element={<HousePage />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/house-rules" element={<HouseRules />} />
+          </Routes>
+        </BrowserRouter>
+      </React.StrictMode>
+    </GlobalProvider>,
+    document.getElementById("root")
+  );
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

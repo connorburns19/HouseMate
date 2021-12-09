@@ -9,10 +9,13 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import { setSessionCookie, getSessionCookie } from "../../session";
+
 function UserForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { setUser } = useContext(GlobalContext);
+
   const navigate = useNavigate();
 
   const submitValue = () => {
@@ -27,10 +30,14 @@ function UserForm() {
         "Access-Control-Allow-Headers":
           "Origin, X-Requested-With, Content-Type, Accept",
       },
-    }).then(function (response) {
+    }).then((response) => {
+      // const userid = response.data._id;
+      // console.log(userid);
+      // setSessionCookie({ userid });
       setUser(response.data);
+      setSessionCookie({ uid: response.data, hid: null });
       //add error check
-      console.log(response.data);
+
       navigate("/houses");
     });
   };

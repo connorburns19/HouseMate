@@ -7,7 +7,10 @@ import HouseCard from "./HouseCard";
 import NewHouseFormDialog from "./NewHouseForm";
 import JoinHouseFormDialog from "./JoinHouseForm";
 import { GlobalContext } from "../context/GlobalState";
+import { getSessionCookie } from "../session";
 import axios from "axios";
+console.log(getSessionCookie());
+const session = getSessionCookie();
 import NavBar from "../NavBar/NavBar";
 
 function HousePage({ user }) {
@@ -36,7 +39,12 @@ function HousePage({ user }) {
   };
 
   React.useEffect(async () => {
-    await displayUserHouses(currUser);
+    if (currUser !== null) {
+      await displayUserHouses(currUser);
+    } else {
+      await displayUserHouses(session.uid);
+    }
+  }, [houseList]);
   }, [houseList, currHouse]);
 
     return (

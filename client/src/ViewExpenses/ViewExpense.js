@@ -49,7 +49,7 @@ function ViewExpense() {
     try {
       const res = await axios({
         method: "get",
-        url: `http://localhost:5000/expense/${session.uid}/${session.hid}/false`,
+        url: `https://secret-cliffs-62941.herokuapp.com/expense/${session.uid}/${session.hid}/false`,
         headers: {
           "Access-Control-Allow-Headers":
             "Origin, X-Requested-With, Content-Type, Accept",
@@ -75,7 +75,7 @@ function ViewExpense() {
     try {
       const res = await axios({
         method: "get",
-        url: `http://localhost:5000/users/${userId}`,
+        url: `https://secret-cliffs-62941.herokuapp.com/users/${userId}`,
         headers: {
           "Access-Control-Allow-Headers":
             "Origin, X-Requested-With, Content-Type, Accept",
@@ -92,7 +92,7 @@ function ViewExpense() {
     try {
       const res = await axios({
         method: "patch",
-        url: `http://localhost:5000/expense/${session.uid}/${session.hid}/${eid}`,
+        url: `https://secret-cliffs-62941.herokuapp.com/expense/${session.uid}/${session.hid}/${eid}`,
         headers: {
           "Access-Control-Allow-Headers":
             "Origin, X-Requested-With, Content-Type, Accept",

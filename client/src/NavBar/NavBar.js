@@ -46,7 +46,7 @@ function NavBar() {
     try {
       const res = await axios({
         method: "get",
-        url: `http://localhost:5000/houses/info/${currHouse}`,
+        url: `https://secret-cliffs-62941.herokuapp.com/houses/info/${currHouse}`,
         headers: {
           "Access-Control-Allow-Headers":
             "Origin, X-Requested-With, Content-Type, Accept",

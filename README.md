@@ -39,3 +39,74 @@ If you would like to experiment as other users, here are some other users we hav
 username: luthraek, password: 1234
 username: degoeyna, password: 1234
 username: burnsco2, password: 1234
+
+
+Here are our express routes:
+
+    //to add a new user
+    /* Request body expects:
+    {
+    "name": <username>,
+    "password": <password>,
+    "phoneNumber": <phoneNumber>,
+    "userName": <username>
+    }
+    */
+    app.post("/users")
+
+
+    //delete a user
+    /* Request body expects:
+    {
+		"id":<userId>
+	}
+    app.delete("/users")
+
+    //to get all the users (for admin)
+    app.get("/users")
+    	
+    //to get user info for a given user (profile page)
+    app.get("/users/:userId")
+    
+    //for making changes to the user's name and phone number
+    /* Request body expects:
+    // {
+    // "name": <name>
+    // "phoneNumber": <phone number>
+    }
+    */
+    app.patch("/users/:userId")
+
+    //for adding a new house (admin)
+    app.post("/houses")
+	
+    //for getting house based on Id (admin)
+    app.get("/houses/info/:houseId")
+
+    //for adding a new house to a user (houses page)
+    /* Request body expects:
+    // {
+    // "id": <houseId>
+    }
+    */
+    app.post("/houses/:userId")
+
+    //delete a user from a house
+    app.delete("/users/house")
+	
+	  //to get all the houses for one person (houses page)
+	  app.get("/houses/:userId")
+
+	  // create a new expense
+	  app.post("/expense/:userId/:houseId")
+
+	  //get information on an expense
+	  //the <owed> parameter allows us to tell whether or not to add it to 
+	  //the view expenses page
+	  app.get("/expense/:userId/:houseId/:owed")
+		
+	  //update an expense object
+	  app.patch('/expense/:userId/:houseId/:expenseId')
+	
+	  //delete an expense
+	  app.delete('/expense/:userId/:houseId/:expenseId')

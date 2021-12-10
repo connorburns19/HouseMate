@@ -24,7 +24,7 @@ function HousePage({ user }) {
     try {
       const res = await axios({
         method: "get",
-        url: `http://localhost:5000/houses/${userid}`,
+        url: `https://secret-cliffs-62941.herokuapp.com/houses/${userid}`,
         headers: {
           "Access-Control-Allow-Headers":
             "Origin, X-Requested-With, Content-Type, Accept",

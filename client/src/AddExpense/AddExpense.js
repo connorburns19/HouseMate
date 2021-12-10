@@ -41,7 +41,7 @@ function AddExpense() {
     try{
       const res = await axios({
         method:"get",
-        url: `http://localhost:5000/houses/info/${currHouse}`,
+        url: `https://secret-cliffs-62941.herokuapp.com/houses/info/${currHouse}`,
         headers: {
           "Access-Control-Allow-Headers":
             "Origin, X-Requested-With, Content-Type, Accept",
@@ -58,7 +58,7 @@ function AddExpense() {
     try{
       const res = await axios({
         method:"get",
-        url:`http://localhost:5000/users/${userId}`,
+        url:`https://secret-cliffs-62941.herokuapp.com/users/${userId}`,
         headers: {
           "Access-Control-Allow-Headers":
             "Origin, X-Requested-With, Content-Type, Accept",
@@ -92,7 +92,7 @@ function AddExpense() {
     try{
       const res = await axios({
         method:"post",
-        url:`http://localhost:5000/expense/${currUser}/${currHouse}`,
+        url:`https://secret-cliffs-62941.herokuapp.com/expense/${currUser}/${currHouse}`,
         data: { amount: amount, description: description, creatorId:currUser, payees:payees },
         headers: {
           "Access-Control-Allow-Headers":

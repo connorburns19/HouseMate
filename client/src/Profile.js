@@ -37,10 +37,8 @@ function Profile() {
         },
         
       })
-      console.log(res.data.name)
       setName(res.data.name)
       setUsername(res.data.username)
-      console.log(res.data.phoneNumber)
       setPhoneNumber(res.data.phoneNumber)
       setHouses(res.data.houses)
       return res.data

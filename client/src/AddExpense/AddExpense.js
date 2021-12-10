@@ -80,7 +80,10 @@ function AddExpense() {
   }, [])
 
   const addExpense = () => {
-    createExpense(amount, description, houseMemberIds);
+    
+    createExpense(parseFloat(
+      (parseFloat(amount) / parseFloat(payees.length)).toFixed(2)
+    ), description, houseMemberIds);
   };
 
   const createExpense = async (amount, description, payees) =>{
@@ -108,7 +111,7 @@ function AddExpense() {
         <NavBar />
         <div className="add-expense-wrapper" color="primary">
           <div className="main-page__title title-color--primary">
-            <h1>You've spent: $45 this month</h1>
+            <h1>Add an Expense:</h1>
           </div>
           <div className="add-expense__form">
             <FormControl

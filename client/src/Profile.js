@@ -42,16 +42,15 @@ function Profile() {
           "Access-Control-Allow-Headers":
             "Origin, X-Requested-With, Content-Type, Accept",
         },
-      });
-      console.log(res.data.name);
-      setName(res.data.name);
-      setUsername(res.data.username);
-      console.log(res.data.phoneNumber);
-      setPhoneNumber(res.data.phoneNumber);
-      setHouses(res.data.houses);
-      return res.data;
-    } catch (error) {
-      console.log(error);
+      })
+      setName(res.data.name)
+      setUsername(res.data.username)
+      setPhoneNumber(res.data.phoneNumber)
+      setHouses(res.data.houses)
+      return res.data
+    }catch(error){
+      
+      console.log(error)
     }
   };
 

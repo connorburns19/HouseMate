@@ -42,7 +42,7 @@ function ViewExpense(){
         try{
           const res = await axios({
             method:"get",
-            url:`http://localhost:5000/expense/${currUser}/${currHouse}/false`,
+            url:`https://secret-cliffs-62941.herokuapp.com/expense/${currUser}/${currHouse}/false`,
             headers: {
               "Access-Control-Allow-Headers":
                 "Origin, X-Requested-With, Content-Type, Accept",
@@ -71,7 +71,7 @@ function ViewExpense(){
         try{
           const res = await axios({
             method:"get",
-            url:`http://localhost:5000/users/${userId}`,
+            url:`https://secret-cliffs-62941.herokuapp.com/users/${userId}`,
             headers: {
               "Access-Control-Allow-Headers":
                 "Origin, X-Requested-With, Content-Type, Accept",
@@ -89,7 +89,7 @@ function ViewExpense(){
         try{
             const res = await axios({
               method:"patch",
-              url:`http://localhost:5000/expense/${currUser}/${currHouse}/${eid}`,
+              url:`https://secret-cliffs-62941.herokuapp.com/expense/${currUser}/${currHouse}/${eid}`,
               headers: {
                 "Access-Control-Allow-Headers":
                   "Origin, X-Requested-With, Content-Type, Accept",
@@ -101,30 +101,6 @@ function ViewExpense(){
           }
       }
 
-    //   const getMembersName = async (userId) => {
-    //     try{
-    //       const res = await axios({
-    //         method:"get",
-    //         url:`http://localhost:5000/users/${userId}`,
-    //         headers: {
-    //           "Access-Control-Allow-Headers":
-    //             "Origin, X-Requested-With, Content-Type, Accept",
-    //         },
-    //       })
-    //       tempArr.push(res.data.name)
-    //       return res.data.name
-    //     }catch(error){
-    //       console.log(error)
-    //     }
-    //   }
-
-    //   React.useEffect(async ()=>{
-    //     const uidList = await getMembers();
-    //     for(var i=0; i<uidList.length; i++){
-    //       await getMembersName(uidList[i])
-    //     }
-    //     setHouseMembers(tempArr)
-    //   }, [])
     function createRows() {
         const rows = []
         

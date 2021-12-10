@@ -41,7 +41,7 @@ export default function JoinHouseFormDialog({ setHouseMember }) {
     try {
       const res = await axios({
         method: "post",
-        url: `http://localhost:5000/houses/${userid}`,
+        url: `https://secret-cliffs-62941.herokuapp.com/houses/${userid}`,
         data: { id: houseID },
         headers: {
           "Access-Control-Allow-Headers":

@@ -36,7 +36,7 @@ function SignUpForm() {
     ) {
       axios({
         method: "post",
-        url: "http://localhost:5000/users",
+        url: "https://secret-cliffs-62941.herokuapp.com/users",
         data: formdetails,
         headers: {
           "Access-Control-Allow-Headers":

@@ -20,6 +20,7 @@ import Logout from "./logout";
 import { createBrowserHistory } from "history";
 console.log(getSessionCookie());
 const session = getSessionCookie();
+
 console.log(session);
 ///////
 if (getSessionCookie() === "none" || getSessionCookie() == undefined) {

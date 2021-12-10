@@ -26,84 +26,92 @@ import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 
 import axios from "axios";
+import { getSessionCookie } from "../session";
 
 function AddExpense() {
   const { currHouse, currUser } = useContext(GlobalContext);
   const [houseMembers, setHouseMembers] = useState([]);
   const [houseMemberIds, setHouseMemberIds] = useState([]);
-  const tempArr = []
+  const tempArr = [];
 
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [payees, setPayees] = useState([]);
-
+  const session = getSessionCookie();
+  const { switchHouse } = useContext(GlobalContext);
+  if (session.hid != null && currHouse !== session.hid) {
+    switchHouse(session.hid);
+  }
   const getMembers = async () => {
-    try{
+    try {
       const res = await axios({
-        method:"get",
-        url: `http://localhost:5000/houses/info/${currHouse}`,
+        method: "get",
+        url: `http://localhost:5000/houses/info/${session.hid}`,
         headers: {
           "Access-Control-Allow-Headers":
             "Origin, X-Requested-With, Content-Type, Accept",
         },
-      })
+      });
       setHouseMemberIds(res.data.members);
-      return res.data.members
-    }catch(error){
-      console.log(error)
+      return res.data.members;
+    } catch (error) {
+      console.log(error);
     }
-  }
-
-  const getMembersUsername = async (userId) => {
-    try{
-      const res = await axios({
-        method:"get",
-        url:`http://localhost:5000/users/${userId}`,
-        headers: {
-          "Access-Control-Allow-Headers":
-            "Origin, X-Requested-With, Content-Type, Accept",
-        },
-      })
-      tempArr.push(res.data.username)
-      return res.data.username
-    }catch(error){
-      console.log(error)
-    }
-  }
-
-  React.useEffect(async ()=>{
-    const uidList = await getMembers();
-    for(var i=0; i<uidList.length; i++){
-      await getMembersUsername(uidList[i])
-    }
-    setHouseMembers(tempArr)
-  }, [])
-
-  const addExpense = () => {
-    
-    createExpense(parseFloat(
-      (parseFloat(amount) / parseFloat(payees.length)).toFixed(2)
-    ), description, houseMemberIds);
   };
 
-  const createExpense = async (amount, description, payees) =>{
-    console.log(houseMemberIds)
-    console.log(payees)
-    try{
+  const getMembersUsername = async (userId) => {
+    try {
       const res = await axios({
-        method:"post",
-        url:`http://localhost:5000/expense/${currUser}/${currHouse}`,
-        data: { amount: amount, description: description, creatorId:currUser, payees:payees },
+        method: "get",
+        url: `http://localhost:5000/users/${userId}`,
         headers: {
           "Access-Control-Allow-Headers":
             "Origin, X-Requested-With, Content-Type, Accept",
         },
-      })
-
-    }catch(error){
-
+      });
+      tempArr.push(res.data.username);
+      return res.data.username;
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
+
+  React.useEffect(async () => {
+    const uidList = await getMembers();
+    for (var i = 0; i < uidList.length; i++) {
+      await getMembersUsername(uidList[i]);
+    }
+    setHouseMembers(tempArr);
+  }, []);
+
+  const addExpense = () => {
+    createExpense(
+      parseFloat((parseFloat(amount) / parseFloat(payees.length)).toFixed(2)),
+      description,
+      houseMemberIds
+    );
+  };
+
+  const createExpense = async (amount, description, payees) => {
+    console.log(houseMemberIds);
+    console.log(payees);
+    try {
+      const res = await axios({
+        method: "post",
+        url: `http://localhost:5000/expense/${session.uid}/${session.hid}`,
+        data: {
+          amount: amount,
+          description: description,
+          creatorId: session.uid,
+          payees: payees,
+        },
+        headers: {
+          "Access-Control-Allow-Headers":
+            "Origin, X-Requested-With, Content-Type, Accept",
+        },
+      });
+    } catch (error) {}
+  };
 
   return (
     <div className="main-page main-page--dark">

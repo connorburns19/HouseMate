@@ -43,6 +43,11 @@ function AdminNavBar() {
 
   const navList2 = [
     {
+      text: "Home",
+      link: "/houses",
+      icon: <OtherHousesIcon />,
+    },
+    {
       text: "Profile",
       link: "/profile",
       icon: <PersonIcon />,
@@ -52,10 +57,10 @@ function AdminNavBar() {
       link: "/house-rules",
       icon: <HomeWorkIcon />,
     },
+
     {
-      text: "Houses",
-      link: "/houses",
-      icon: <OtherHousesIcon />,
+      text: "Logout",
+      link: "/logout",
     },
   ];
 

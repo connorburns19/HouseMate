@@ -10,9 +10,8 @@ import { GlobalContext } from "../context/GlobalState";
 import { getSessionCookie } from "../session";
 import axios from "axios";
 import NavBar from "../NavBar/NavBar";
+import AdminNavBar from "../NavBar/AdminNavBar";
 console.log(getSessionCookie());
-const session = getSessionCookie();
-
 
 function HousePage({ user }) {
   const { currUser } = React.useContext(GlobalContext);
@@ -46,7 +45,41 @@ function HousePage({ user }) {
       await displayUserHouses(session.uid);
     }
   }, [houseList, currHouse]);
-
+  const session = getSessionCookie();
+  if (session.uid === "admin") {
+    console.log("yes");
+    return (
+      <div className="house-page house-page--dark">
+        <ThemeProvider theme={theme}>
+          <AdminNavBar />
+          <div>
+            <img
+              className="welcome"
+              src="https://jamvie.net/images/UTCTFscreenshot2.png"
+            />
+          </div>
+          {/* <div className="house-list">
+            <Stack className="house-stack" spacing={2}>
+              <JoinHouseFormDialog setHouseMember={addMemberToHouse} />
+              <NewHouseFormDialog setHouseMember={createHouse} />
+              <h2 className="house-title">Your Houses</h2>
+              {houseList.length > 0 &&
+                houseList.map((item, index) => {
+                  return (
+                    <HouseCard
+                      address={item.address}
+                      imagelink={item.imageLink}
+                      id={item._id}
+                      key={index}
+                    />
+                  );
+                })}
+            </Stack>
+          </div> */}
+        </ThemeProvider>
+      </div>
+    );
+  }
   return (
     <div className="house-page house-page--dark">
       <ThemeProvider theme={theme}>

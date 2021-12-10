@@ -19,16 +19,17 @@ import HomeIcon from "@mui/icons-material/Home";
 import OtherHousesIcon from "@mui/icons-material/OtherHouses";
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
 import { Link } from "react-router-dom";
-import { GlobalContext } from '../context/GlobalState';
+import { GlobalContext } from "../context/GlobalState";
 import axios from "axios";
-
+import { getSessionCookie, setSessionCookie } from "../session";
+import * as Cookies from "js-cookie";
 
 function NavBar() {
   const { currHouse } = React.useContext(GlobalContext);
   const [state, setState] = React.useState({
     visible: false,
   });
-  const [houseAddress, getHouseAddress] = React.useState()
+  const [houseAddress, getHouseAddress] = React.useState();
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -41,30 +42,26 @@ function NavBar() {
   };
 
   const showAddress = async () => {
-    console.log(currHouse)
-    try{
+    console.log(currHouse);
+    try {
       const res = await axios({
-        method:"get",
+        method: "get",
         url: `http://localhost:5000/houses/info/${currHouse}`,
         headers: {
           "Access-Control-Allow-Headers":
             "Origin, X-Requested-With, Content-Type, Accept",
         },
-        
-      })
-      getHouseAddress(res.data.address)
-      return res.data.address
-    }catch(error){
-      
-      console.log(error)
+      });
+      getHouseAddress(res.data.address);
+      return res.data.address;
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
 
   React.useEffect(async () => {
-    await showAddress(); 
-  }, [houseAddress, currHouse])
-
-
+    await showAddress();
+  }, [houseAddress, currHouse]);
 
   const navList = [
     {
@@ -100,6 +97,10 @@ function NavBar() {
       link: "/houses",
       icon: <OtherHousesIcon />,
     },
+    {
+      text: "Logout",
+      link: "/logout",
+    },
   ];
 
   const list = (anchor) => (
@@ -111,6 +112,7 @@ function NavBar() {
       <List>
         {navList.map((item, index) => {
           const { text, icon, link } = item;
+
           return (
             <Link to={link} style={{ textDecoration: "none" }}>
               <ListItem button key={text}>
@@ -125,6 +127,7 @@ function NavBar() {
       <List>
         {navList2.map((item, index) => {
           const { text, icon, link } = item;
+
           return (
             <Link to={link} style={{ textDecoration: "none" }}>
               <ListItem button key={text}>

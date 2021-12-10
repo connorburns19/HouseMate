@@ -19,7 +19,11 @@ function UserForm() {
   const navigate = useNavigate();
 
   const submitValue = () => {
-    attemptLogin();
+    if (username === "admin") {
+      attemptAdminLogin();
+    } else {
+      attemptLogin();
+    }
   };
   const attemptLogin = async () => {
     axios({
@@ -36,6 +40,27 @@ function UserForm() {
       // setSessionCookie({ userid });
       setUser(response.data);
       setSessionCookie({ uid: response.data, hid: null });
+      //add error check
+
+      navigate("/houses");
+    });
+  };
+
+  const attemptAdminLogin = async () => {
+    axios({
+      method: "post",
+      url: "http://localhost:5000/users/login",
+      data: { username: username, password: password },
+      headers: {
+        "Access-Control-Allow-Headers":
+          "Origin, X-Requested-With, Content-Type, Accept",
+      },
+    }).then((response) => {
+      // const userid = response.data._id;
+      // console.log(userid);
+      // setSessionCookie({ userid });
+      setUser(response.data);
+      setSessionCookie({ uid: username, hid: null });
       //add error check
 
       navigate("/houses");

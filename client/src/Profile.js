@@ -12,13 +12,14 @@ import { GlobalContext } from "./context/GlobalState";
 import { useContext } from "react";
 import axios from "axios";
 import { getSessionCookie, setSessionCookie } from "./session";
-const session = getSessionCookie();
 
 //change to database in Phase 2
 let image =
   "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
 
 function Profile() {
+  const session = getSessionCookie();
+
   const { currUser } = useContext(GlobalContext);
   const { currHouse } = useContext(GlobalContext);
   const { switchHouse } = useContext(GlobalContext);
@@ -61,16 +62,16 @@ function Profile() {
   return (
     <div className="profile-page profile-page--dark">
       <ThemeProvider theme={theme}>
-        {currUser === "admin" ? <AdminNavBar /> : <NavBar />}
+        {session.uid === "admin" ? <AdminNavBar /> : <NavBar />}
 
         <div className="profile-page__flex-wrapper">
-          {currUser === "admin" ? (
+          {session.uid === "admin" ? (
             <ProfileCard
               image={image}
-              number={phoneNumber}
-              display_name={name}
-              username={username}
-              house_list={houses}
+              number={"1 (800) 267-2001"}
+              display_name={"admin"}
+              username={"admin"}
+              house_list={"none"}
             />
           ) : (
             <PersonalProfileCard

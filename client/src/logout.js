@@ -42,7 +42,8 @@ function Logout() {
   }
 
   Cookies.remove("session");
-
+  console.log(getSessionCookie());
+  //   setSessionCookie(undefined);
   //   const backtoLogin = () => {
   //     navigate("/*");
   //   };
@@ -61,7 +62,7 @@ function Logout() {
       <ThemeProvider theme={theme}>
         <div className="landing-page__flex-wrapper">
           <div className="landing-page__button-container">
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link to="/logout/login" style={{ textDecoration: "none" }}>
               <Button
                 color="primary"
                 variant="contained"

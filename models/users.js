@@ -35,14 +35,9 @@ const UserSchema = new mongoose.Schema({
 
 })
 
-// An example of Mongoose middleware.
-// This function will run immediately prior to saving the document
-// in the database.
-
-
-
-
-// METHOD taken from CSC309 sample code provided by
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// METHOD taken from CSC309 sample code provided by Mark Kazakevich, in the class which this was developed (CSC309, University of Toronto)
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 UserSchema.pre('save', function(next) {
 	const user = this; // binds this to User document instance
 
@@ -59,8 +54,9 @@ UserSchema.pre('save', function(next) {
 		next()
 	}
 })
-
-// METHOD taken from CSC309 sample code, provided by 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// METHOD taken from CSC309 sample code, provided by Mark Kazakevich, in the class which this was developed (CSC309, University of Toronto)
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 UserSchema.statics.findByUsernamePassword = function (username, password) {
 	const User = this; // binds this to the User model
   
@@ -82,6 +78,6 @@ UserSchema.statics.findByUsernamePassword = function (username, password) {
 	});
   };
   
-// make a model using the User schema
+
 const User = mongoose.model('User', UserSchema)
 module.exports = { User, UserSchema }

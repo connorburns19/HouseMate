@@ -3,7 +3,7 @@
 HouseMate is a platform that simplifies cost splitting among roommates! 
 
 # Note on recycled code
-The server side and client side user/password authentication code (bcrypt, hashing etc.) was taken, and then modified to work with our project from sample code posted by Mark Kazakevich, in the class which this was developed.
+The server side and client side user/password authentication code (bcrypt, hashing etc.) was taken, and then modified to work with our project from sample code posted by Mark Kazakevich, in the class which this was developed (CSC309, University of Toronto).
 
 
 # How to run it locally 

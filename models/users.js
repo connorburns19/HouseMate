@@ -38,6 +38,11 @@ const UserSchema = new mongoose.Schema({
 // An example of Mongoose middleware.
 // This function will run immediately prior to saving the document
 // in the database.
+
+
+
+
+// METHOD taken from CSC309 sample code provided by
 UserSchema.pre('save', function(next) {
 	const user = this; // binds this to User document instance
 
@@ -55,6 +60,7 @@ UserSchema.pre('save', function(next) {
 	}
 })
 
+// METHOD taken from CSC309 sample code, provided by 
 UserSchema.statics.findByUsernamePassword = function (username, password) {
 	const User = this; // binds this to the User model
   

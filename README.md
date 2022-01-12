@@ -2,6 +2,10 @@
 
 HouseMate is a platform that simplifies cost splitting among roommates! 
 
+# Note on recycled code
+The server side and client side user/password authentication code (bcrypt, hashing etc.) was taken, and then modified to work with our project from sample code posted by Mark Kazakevich, in the class which this was developed.
+
+
 # How to run it locally 
 
 First, clone the repository to your machine by running  `git clone https://github.com/csc309-fall-2021/team27.git` in your command line. 
